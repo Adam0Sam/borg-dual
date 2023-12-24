@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "navigation_collections",
+  "info": {
+    "singularName": "navigation-collection",
+    "pluralName": "navigation-collections",
+    "displayName": "Navigation Collection",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "name": {
+      "type": "string"
+    },
+    "NavLink": {
+      "type": "component",
+      "repeatable": true,
+      "component": "navigation.nav-link"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_navigation_nav_links",
+  "info": {
+    "displayName": "NavLink",
+    "icon": "link",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "page": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::page.page"
+    }
+  }
+}
