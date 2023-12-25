@@ -413,7 +413,6 @@ export interface ApiPagePage extends Schema.CollectionType {
   attributes: {
     name: Attribute.String;
     slug: Attribute.UID<'api::page.page', 'name'>;
-    image: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

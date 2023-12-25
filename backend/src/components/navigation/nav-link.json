@@ -10,9 +10,9 @@
     "name": {
       "type": "string"
     },
-    "pages": {
+    "page": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "oneToOne",
       "target": "api::page.page"
     }
   }

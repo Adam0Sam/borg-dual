@@ -5,32 +5,18 @@
  */
 
 
-// magic blackbox: DO NOT TOUCH
 const { createCoreController } = require('@strapi/strapi').factories;
 
-
-module.exports = createCoreController('api::navigation-collection.navigation-collection');
-
-
-// const modelUid = "api::navigation-collection.navigation-collection";
-
-// module.exports = createCoreController(modelUid, ({ strapi }) => ({
-
-//     async find(ctx) {
-//         const { query } = ctx;
-//         console.log("query: ", query);
-//         const { results, meta } = await strapi.service(modelUid).find({
-//             ...query,
-//         });
-
-//         console.log("results: ", results[0].NavLink);
-//         const sanitizedEntities = await this.sanitizeOutput(results, ctx);
-
-//         return {
-//             data: sanitizedEntities,
-//             meta,
-//         };
-//     },
-
-
-// }));
+module.exports = createCoreController('api::navigation-collection.navigation-collection', ({ strapi }) => ({
+    async findOne(ctx) {
+        const { id } = ctx.params;
+        const queryDepth = '3';
+        const post = await strapi.db.query('api::navigation-collection.navigation-collection').findOne({ 
+            where: { slug: id },
+            populate: ['deep', {queryDepth}]
+         }); 
+        
+         const sanitizedPost = await this.sanitizeOutput(post, ctx);
+         return this.transformResponse(sanitizedPost);
+    }
+}));

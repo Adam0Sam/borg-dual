@@ -9,9 +9,9 @@ export interface NavigationNavLink extends Schema.Component {
   };
   attributes: {
     name: Attribute.String;
-    pages: Attribute.Relation<
+    page: Attribute.Relation<
       'navigation.nav-link',
-      'oneToMany',
+      'oneToOne',
       'api::page.page'
     >;
   };

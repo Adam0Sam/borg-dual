@@ -13,11 +13,10 @@ module.exports = createCoreController('api::page.page', ({ strapi }) => ({
 
         const post = await strapi.db.query('api::page.page').findOne({ 
             where: { slug: id },
-            populate: ['*']
+            populate: ['image']
          }); 
         
          const sanitizedPost = await this.sanitizeOutput(post, ctx);
          return this.transformResponse(sanitizedPost);
     }
-
 }));
