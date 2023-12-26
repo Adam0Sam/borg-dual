@@ -17,10 +17,22 @@ export interface NavigationNavLink extends Schema.Component {
   };
 }
 
+export interface PageRichText extends Schema.Component {
+  collectionName: 'components_page_rich_texts';
+  info: {
+    displayName: 'Rich Text';
+    description: '';
+  };
+  attributes: {
+    Text: Attribute.Blocks;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'navigation.nav-link': NavigationNavLink;
+      'page.rich-text': PageRichText;
     }
   }
 }

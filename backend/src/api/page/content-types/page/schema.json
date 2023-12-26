@@ -18,6 +18,11 @@
     "slug": {
       "type": "uid",
       "targetField": "name"
+    },
+    "RichText": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page.rich-text"
     }
   }
 }
