@@ -18,7 +18,6 @@ export default function MenuItem({ slug, name }) {
             else {
                 setMenuChildren(data.data.attributes.NavLink);
             }
-            console.log(data.data.attributes.NavLink);
         }
         catch (err) {
             setError(err.status);
@@ -43,7 +42,8 @@ export default function MenuItem({ slug, name }) {
                     <NavLink
                         className="nav__link"
                         data-slug={menuChildren[0].page.data.attributes.slug}
-                        to={menuChildren[0].page.data.attributes.slug}>
+                        to={menuChildren[0].page.data.attributes.slug}
+                        key={menuChildren[0].page.data.attributes.slug}>
                         {name}
                     </NavLink>
                 </li>
@@ -53,24 +53,25 @@ export default function MenuItem({ slug, name }) {
                 >
                     <div
                         className="nav__link"
-                        data-slug={slug}>
+                        data-slug={slug}
+                        key={slug}>
                         {name}
                         <RiArrowDownSLine className='dropdown__arrow' />
                     </div>
 
                     <ul className='dropdown__menu'>
                         {menuChildren.map((child) => {
-                            const name = child.name;
-                            const slug = child.page.data.attributes.slug;
+                            const childName = child.name;
+                            const childSlug = child.page.data.attributes.slug;
 
                             return (
-                                <li>
+                                <li key={childSlug}>
                                     <NavLink
-                                        key={slug}
+                                        key={childSlug}
                                         className="dropdown__link"
-                                        data-slug={slug}
-                                        to={slug}>
-                                        {name}
+                                        data-slug={childSlug}
+                                        to={childSlug}>
+                                        {childName}
                                     </NavLink>
                                 </li>
                             )

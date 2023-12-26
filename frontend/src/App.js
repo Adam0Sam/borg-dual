@@ -15,6 +15,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/:slug" element={<CustomPage />} />
           </Routes>
+          {/* <BlockRendererTest /> */}
         </main>
       </BrowserRouter>
     </div>

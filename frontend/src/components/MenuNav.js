@@ -13,7 +13,6 @@ export default function MenuNav() {
     const fetchMenuItems = async () => {
         const response = await fetch('http://localhost:1337/api/navigation-collections');
         const obj = await response.json();
-        console.log(obj.data);
         setMenuItems(obj.data);
     }
 
