@@ -24,7 +24,7 @@ export interface PageRichText extends Schema.Component {
     description: '';
   };
   attributes: {
-    Text: Attribute.Blocks;
+    TextInstance: Attribute.Blocks;
   };
 }
 

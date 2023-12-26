@@ -322,3 +322,8 @@ a {
     display: flex;
     align-items: center;
 }
+
+/* Temporary */
+img{
+    max-width: 400px;
+}
