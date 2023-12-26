@@ -10,10 +10,12 @@ function App() {
     <div className="app">
       <BrowserRouter>
         <MenuNav />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/:slug" element={<CustomPage />} />
-        </Routes>
+        <main className='main'>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/:slug" element={<CustomPage />} />
+          </Routes>
+        </main>
       </BrowserRouter>
     </div>
   );
