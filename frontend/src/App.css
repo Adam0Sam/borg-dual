@@ -328,7 +328,7 @@ img{
     max-width: 400px;
 }
 
-.info-row{
+.info-row-container{
     display: flex;
     justify-content: space-between;
     align-items: center;
