@@ -1,20 +1,21 @@
 ## ToDo of the Frontend
 
+
+> Page templates (High Priority)
+- Form the homepage (create a dynamic zone with three components)
+- Create `publication` collection type and make dynamic [publications page](http://borg.licejus.lt/publications.html)
+- Create gallery component
+- Can you [insert table](http://borg.licejus.lt/community.html) in RichText?
+- Create [task example components](http://borg.licejus.lt/examples.html)
+
+> Website and code improvements (Medium priority)
 - Create more optimal Navbar animations with `transform` instead of `top`
 - Make a smoother transition from nav__burger to nav__close usign` ::before` and `::after` pseudoclasses
 - Make the Navbar mobile friendly with valid pointer-events and click handling
 - Create error handling for all components
 - Create a universal fetch utility
 - Create a universal image url utility
-- Create a better way for checking unique dynamic zones in `CustomPage.js` (maybe implement single types instead of collection types in strapi?)
+- Create a better way for checking unique dynamic zones in `CustomPage.js` (maybe implement single types instead of collection types in strapi?) 
 
-> In regards to new page templates
-- Form the homepage (create a dynamic zone with three components)
-- Create a [dynamic zone](http://borg.licejus.lt/countries.html) for for flag components
-- Create a [logo](http://borg.licejus.lt/logo.html) component
-- Create [Event](http://borg.licejus.lt/events.html) component
-- Create `publication` collection type and make dynamic [publications page](http://borg.licejus.lt/publications.html)
-- Create gallery component
-
-- Can you [insert table](http://borg.licejus.lt/community.html) in RichText?
-- Create [task example components](http://borg.licejus.lt/examples.html)
+> Future potential (Low priority)
+- Implement professional, production ready React Hooks for Data Fetching (*something like SWR Vercel?*)
