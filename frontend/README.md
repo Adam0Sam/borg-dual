@@ -5,6 +5,8 @@
 - Make the Navbar mobile friendly with valid pointer-events and click handling
 - Create error handling for all components
 - Create a universal fetch utility
+- Create a universal image url utility
+- Create a better way for checking unique dynamic zones in `CustomPage.js` (maybe implement single types instead of collection types in strapi?)
 
 > In regards to new page templates
 - Form the homepage (create a dynamic zone with three components)

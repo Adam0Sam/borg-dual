@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_icon_countries",
+  "info": {
+    "displayName": "Country",
+    "icon": "picture",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "flag": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "url": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "info": {
+      "type": "string"
+    }
+  }
+}

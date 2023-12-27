@@ -851,6 +851,9 @@ export interface ApiPagePage extends Schema.CollectionType {
     name: Attribute.String;
     slug: Attribute.UID<'api::page.page', 'name'>;
     RichText: Attribute.Component<'page.rich-text', true>;
+    Countries: Attribute.DynamicZone<['icon.country']>;
+    Logos: Attribute.DynamicZone<['icon.logo']>;
+    Events: Attribute.DynamicZone<['page.rich-text']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

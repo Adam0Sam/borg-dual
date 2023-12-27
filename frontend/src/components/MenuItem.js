@@ -6,6 +6,7 @@ import { RiArrowDownSLine } from '@remixicon/react';
 export default function MenuItem({ slug, name }) {
     const [menuChildren, setMenuChildren] = useState([]);
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const fetchMenuChildren = async (slug) => {
         try {
@@ -16,7 +17,8 @@ export default function MenuItem({ slug, name }) {
                 setError('No children found');
             }
             else {
-                setMenuChildren(data.data.attributes.NavLink);
+                setMenuChildren(childArray);
+                setLoading(false);
             }
         }
         catch (err) {
@@ -28,6 +30,13 @@ export default function MenuItem({ slug, name }) {
     useEffect(() => {
         fetchMenuChildren(slug);
     }, [slug]);
+
+
+    if (loading) {
+        return (
+            <li className="nav nav-error">Loading...</li>
+        )
+    }
 
     if(error){
         return (
@@ -41,9 +50,9 @@ export default function MenuItem({ slug, name }) {
                 <li>
                     <NavLink
                         className="nav__link"
-                        data-slug={menuChildren[0].page.data.attributes.slug}
-                        to={menuChildren[0].page.data.attributes.slug}
-                        key={menuChildren[0].page.data.attributes.slug}>
+                        data-slug={menuChildren[0]?.page?.data?.attributes?.slug || ''}
+                        to={menuChildren[0]?.page?.data?.attributes?.slug || ''}
+                        key={menuChildren[0]?.page?.data?.attributes?.slug || ''}>
                         {name}
                     </NavLink>
                 </li>
@@ -62,7 +71,7 @@ export default function MenuItem({ slug, name }) {
                     <ul className='dropdown__menu'>
                         {menuChildren.map((child) => {
                             const childName = child.name;
-                            const childSlug = child.page.data.attributes.slug;
+                            const childSlug = child?.page?.data?.attributes?.slug || '';
 
                             return (
                                 <li key={childSlug}>
@@ -81,4 +90,5 @@ export default function MenuItem({ slug, name }) {
             )}
         </>
     );
+
 }

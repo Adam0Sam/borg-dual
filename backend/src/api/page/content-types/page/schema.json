@@ -23,6 +23,24 @@
       "type": "component",
       "repeatable": true,
       "component": "page.rich-text"
+    },
+    "Countries": {
+      "type": "dynamiczone",
+      "components": [
+        "icon.country"
+      ]
+    },
+    "Logos": {
+      "type": "dynamiczone",
+      "components": [
+        "icon.logo"
+      ]
+    },
+    "Events": {
+      "type": "dynamiczone",
+      "components": [
+        "page.rich-text"
+      ]
     }
   }
 }
