@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_home_info_columns",
+  "info": {
+    "displayName": "InfoColumn",
+    "icon": "feather"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "name": {
+      "type": "string"
+    },
+    "TextInstance": {
+      "type": "blocks"
+    }
+  }
+}
