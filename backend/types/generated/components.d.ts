@@ -1,5 +1,29 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface HomeAlert extends Schema.Component {
+  collectionName: 'components_home_alerts';
+  info: {
+    displayName: 'Alert';
+    icon: 'earth';
+  };
+  attributes: {
+    TextInstance: Attribute.Blocks;
+  };
+}
+
+export interface HomeInfoColumn extends Schema.Component {
+  collectionName: 'components_home_info_columns';
+  info: {
+    displayName: 'InfoColumn';
+    icon: 'feather';
+  };
+  attributes: {
+    image: Attribute.Media;
+    name: Attribute.String;
+    TextInstance: Attribute.Blocks;
+  };
+}
+
 export interface IconCountry extends Schema.Component {
   collectionName: 'components_icon_countries';
   info: {
@@ -20,6 +44,7 @@ export interface IconLogo extends Schema.Component {
   info: {
     displayName: 'Logo';
     icon: 'picture';
+    description: '';
   };
   attributes: {
     logo: Attribute.Media;
@@ -59,6 +84,8 @@ export interface PageRichText extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'home.alert': HomeAlert;
+      'home.info-column': HomeInfoColumn;
       'icon.country': IconCountry;
       'icon.logo': IconLogo;
       'navigation.nav-link': NavigationNavLink;

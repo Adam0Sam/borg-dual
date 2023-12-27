@@ -327,3 +327,10 @@ a {
 img{
     max-width: 400px;
 }
+
+.info-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}

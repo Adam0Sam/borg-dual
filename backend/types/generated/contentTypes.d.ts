@@ -780,7 +780,15 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
     draftAndPublish: true;
   };
   attributes: {
-    RichText: Attribute.Component<'page.rich-text'>;
+    Alert: Attribute.Component<'home.alert'>;
+    InfoRowOne: Attribute.DynamicZone<['home.info-column']> &
+      Attribute.SetMinMax<{
+        max: 3;
+      }>;
+    InfoRowTwo: Attribute.DynamicZone<['home.info-column']> &
+      Attribute.SetMinMax<{
+        max: 3;
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

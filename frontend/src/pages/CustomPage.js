@@ -1,36 +1,18 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { BlocksRenderer } from '@strapi/blocks-react-renderer';
+import fetchAPI from "../utils/api";
+import { getStrapiURL } from "../utils/api";
 
-const addNewRichTextLine = (children) => {
-    if (children.length === 0) {
-        return true;
-    }
-    if (children.length === 1 && children[0].props.text.length === 0) {
-        return true;
-    }
-    return false;
-}
+import CustomBlocksRenderer from "../components/CustomBlocksRenderer";
 
 function RichTextComponent({ text }) {
-
-
-
     return (
         <>
             {text.map((element) => {
                 return (
                     <>
-                        <BlocksRenderer
+                        <CustomBlocksRenderer
                             content={element.TextInstance}
-                            blocks={{
-                                paragraph: ({ children }) => {
-                                    if (addNewRichTextLine(children)) {
-                                        return <br></br>
-                                    }
-                                    return <p>{children}</p>
-                                }
-                            }}
                         />
                         <br></br>
                         <p>-----------------------------------</p>
@@ -43,8 +25,6 @@ function RichTextComponent({ text }) {
 }
 
 function CountriesComponent({ countries }) {
-    console.log("countries: ", countries);
-
     return (
         <>
             {countries.map((country) => {
@@ -53,14 +33,12 @@ function CountriesComponent({ countries }) {
                         <div>
                             <h4>{country.name}</h4>
                             <p>{country.info}</p>
-                            <a href={`http://${country.url}`} target="_blank">
+                            <a href={`http://${country.url}`} target="_blank" rel="noreferrer">
                                 <img
-                                    src={`http://localhost:1337${country.flag.data.attributes?.url}`}
-                                    alt={`${country.name} image`}>
+                                    src={getStrapiURL(country.flag.data.attributes?.url)}
+                                    alt={`${country.name}`}>
                                 </img>
-
                             </a>
-
                         </div>
                         <p>-----------------------------</p>
                     </>
@@ -71,7 +49,6 @@ function CountriesComponent({ countries }) {
 }
 
 function LogoComponent({ logos }) {
-    console.log("logos: ", logos);
     return (
         <>
             {
@@ -80,8 +57,8 @@ function LogoComponent({ logos }) {
                         <>
                             <div>
                                 <img
-                                    src={`http://localhost:1337${logo.logo?.data?.attributes?.url || ''}`}
-                                    alt={`${logo.name} image`}>
+                                    src={getStrapiURL(logo.logo?.data?.attributes?.url)}
+                                    alt={`${logo.name}`}>
                                 </img>
                                 <p>{logo.name}</p>
                             </div>
@@ -101,20 +78,11 @@ function EventComponent({ events }) {
         <>
             {
                 events.map((event) => {
-                    console.log("event: ", event);
                     return (
                         <>
                             <h3>{event.year}</h3>
-                            <BlocksRenderer
+                            <CustomBlocksRenderer
                                 content={event.TextInstance}
-                                blocks={{
-                                    paragraph: ({ children }) => {
-                                        if (addNewRichTextLine(children)) {
-                                            return <br></br>
-                                        }
-                                        return <p>{children}</p>
-                                    }
-                                }}
                             />
                             <p>-----------------------------</p>
                         </>
@@ -129,18 +97,25 @@ export default function CustomPage() {
     const params = useParams();
     const postSlug = params.slug;
     const [content, setContent] = useState([]);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const fetchContent = async () => {
-        const res = await fetch(`http://localhost:1337/api/pages/${postSlug}`);
-        const obj = await res.json();
-        setContent(obj.data.attributes);
-        // console.log("page content: ", obj.data.attributes);
+        try {
+            const data = await fetchAPI(`/api/pages/${postSlug}`);
+            setContent(data.data.attributes);
+            setLoading(false);
+        }
+        catch (err) {
+            setError(err.status + ": " + err.statusText);
+        }
     }
 
     useEffect(() => {
         fetchContent();
     }, [postSlug])
 
+    // TODO: Make this more generic
     const hasRichText = (content) => {
         if (content.RichText?.length > 0) {
             return true;

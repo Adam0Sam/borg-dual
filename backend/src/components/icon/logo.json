@@ -2,19 +2,21 @@
   "collectionName": "components_icon_logos",
   "info": {
     "displayName": "Logo",
-    "icon": "picture"
+    "icon": "picture",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "name": {
       "type": "string"
