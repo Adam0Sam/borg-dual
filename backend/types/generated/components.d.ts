@@ -1,5 +1,17 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface EventEvent extends Schema.Component {
+  collectionName: 'components_event_events';
+  info: {
+    displayName: 'Event';
+    icon: 'calendar';
+  };
+  attributes: {
+    year: Attribute.String;
+    RichText: Attribute.Component<'page.rich-text', true>;
+  };
+}
+
 export interface HomeAlert extends Schema.Component {
   collectionName: 'components_home_alerts';
   info: {
@@ -77,19 +89,50 @@ export interface PageRichText extends Schema.Component {
   };
   attributes: {
     TextInstance: Attribute.Blocks;
-    year: Attribute.String;
+  };
+}
+
+export interface PublicationPublicationButton extends Schema.Component {
+  collectionName: 'components_publication_publication_buttons';
+  info: {
+    displayName: 'Publication Button';
+    icon: 'cursor';
+  };
+  attributes: {
+    name: Attribute.String;
+    PublicationLink: Attribute.Component<'publication.publication-link', true>;
+  };
+}
+
+export interface PublicationPublicationLink extends Schema.Component {
+  collectionName: 'components_publication_publication_links';
+  info: {
+    displayName: 'Publication Link';
+    icon: 'link';
+    description: '';
+  };
+  attributes: {
+    name: Attribute.String;
+    publication: Attribute.Relation<
+      'publication.publication-link',
+      'oneToOne',
+      'api::publication.publication'
+    >;
   };
 }
 
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'event.event': EventEvent;
       'home.alert': HomeAlert;
       'home.info-column': HomeInfoColumn;
       'icon.country': IconCountry;
       'icon.logo': IconLogo;
       'navigation.nav-link': NavigationNavLink;
       'page.rich-text': PageRichText;
+      'publication.publication-button': PublicationPublicationButton;
+      'publication.publication-link': PublicationPublicationLink;
     }
   }
 }

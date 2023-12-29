@@ -861,13 +861,47 @@ export interface ApiPagePage extends Schema.CollectionType {
     RichText: Attribute.Component<'page.rich-text', true>;
     Countries: Attribute.DynamicZone<['icon.country']>;
     Logos: Attribute.DynamicZone<['icon.logo']>;
-    Events: Attribute.DynamicZone<['page.rich-text']>;
+    Events: Attribute.DynamicZone<['event.event']>;
+    PublicationButtons: Attribute.DynamicZone<
+      ['publication.publication-button']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPublicationPublication extends Schema.CollectionType {
+  collectionName: 'publications';
+  info: {
+    singularName: 'publication';
+    pluralName: 'publications';
+    displayName: 'Publication';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    RichText: Attribute.Component<'page.rich-text'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::publication.publication',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::publication.publication',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -893,6 +927,7 @@ declare module '@strapi/types' {
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::navigation-collection.navigation-collection': ApiNavigationCollectionNavigationCollection;
       'api::page.page': ApiPagePage;
+      'api::publication.publication': ApiPublicationPublication;
     }
   }
 }

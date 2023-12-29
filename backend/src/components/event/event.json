@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_event_events",
+  "info": {
+    "displayName": "Event",
+    "icon": "calendar"
+  },
+  "options": {},
+  "attributes": {
+    "year": {
+      "type": "string"
+    },
+    "RichText": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page.rich-text"
+    }
+  }
+}

@@ -39,7 +39,13 @@
     "Events": {
       "type": "dynamiczone",
       "components": [
-        "page.rich-text"
+        "event.event"
+      ]
+    },
+    "PublicationButtons": {
+      "type": "dynamiczone",
+      "components": [
+        "publication.publication-button"
       ]
     }
   }

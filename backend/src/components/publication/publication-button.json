@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_publication_publication_buttons",
+  "info": {
+    "displayName": "Publication Button",
+    "icon": "cursor"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "PublicationLink": {
+      "type": "component",
+      "repeatable": true,
+      "component": "publication.publication-link"
+    }
+  }
+}

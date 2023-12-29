@@ -23,6 +23,7 @@ const InfoRowComponent = ({ infoRow }) => {
         </div>
     )
 }
+
 export default function Home() {
     const [content, setContent] = useState([]);
     const [error, setError] = useState(null);

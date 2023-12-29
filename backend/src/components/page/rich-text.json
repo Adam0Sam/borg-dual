@@ -8,9 +8,6 @@
   "attributes": {
     "TextInstance": {
       "type": "blocks"
-    },
-    "year": {
-      "type": "string"
     }
   }
 }

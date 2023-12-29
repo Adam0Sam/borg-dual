@@ -32,17 +32,18 @@ export default function MenuItem({ slug, name }) {
     }, [slug]);
 
 
+    if (error) {
+        return (
+            <li className="error nav-error">Something went wrong. {error}</li>
+        )
+    }
+    
     if (loading) {
         return (
             <li className="nav nav-error">Loading...</li>
         )
     }
 
-    if(error){
-        return (
-            <li className="error nav-error">Something went wrong. {error}</li>
-        )
-    }
 
     return (
         <>

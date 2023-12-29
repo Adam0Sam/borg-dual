@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import MenuItem from './MenuItem'; // Import the MenuItem component
+import fetchAPI from '../utils/api';
 
 // from: https://remixicon.com/
 import { RiHeartFill, RiMenuLine, RiCloseLine } from '@remixicon/react';
@@ -11,9 +12,8 @@ export default function MenuNav() {
     const navToggle = useRef(null);
 
     const fetchMenuItems = async () => {
-        const response = await fetch('http://localhost:1337/api/navigation-collections');
-        const obj = await response.json();
-        setMenuItems(obj.data);
+        const data = await fetchAPI('/api/navigation-collections');
+        setMenuItems(data.data);
     }
 
     useEffect(() => {

@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import fetchAPI from "../utils/api";
+import fetchAPI from '../utils/api';
 import { getStrapiURL } from "../utils/api";
 
 import CustomBlocksRenderer from "../components/CustomBlocksRenderer";
@@ -74,6 +74,7 @@ function LogoComponent({ logos }) {
 }
 
 function EventComponent({ events }) {
+    
     return (
         <>
             {
@@ -81,10 +82,9 @@ function EventComponent({ events }) {
                     return (
                         <>
                             <h3>{event.year}</h3>
-                            <CustomBlocksRenderer
-                                content={event.TextInstance}
+                            <RichTextComponent
+                                text={event.RichText}
                             />
-                            <p>-----------------------------</p>
                         </>
                     )
                 })
