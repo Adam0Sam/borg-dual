@@ -2,8 +2,7 @@
   "collectionName": "components_publication_publication_links",
   "info": {
     "displayName": "Publication Link",
-    "icon": "link",
-    "description": ""
+    "icon": "link"
   },
   "options": {},
   "attributes": {

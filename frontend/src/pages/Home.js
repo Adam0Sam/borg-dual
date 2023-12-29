@@ -5,7 +5,6 @@ import { getStrapiURL } from '../utils/api';
 import CustomBlocksRenderer from '../components/CustomBlocksRenderer';
 
 const InfoRowComponent = ({ infoRow }) => {
-    console.log(infoRow)
     return (
         <div className='info-row-container'>
             {infoRow.map((info) => {

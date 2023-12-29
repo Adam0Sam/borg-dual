@@ -887,7 +887,9 @@ export interface ApiPublicationPublication extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    RichText: Attribute.Component<'page.rich-text'>;
+    name: Attribute.String;
+    RichText: Attribute.Component<'page.rich-text', true>;
+    slug: Attribute.UID<'api::publication.publication', 'name'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

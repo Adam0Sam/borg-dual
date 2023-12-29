@@ -334,3 +334,20 @@ img{
     align-items: center;
     margin-bottom: 1rem;
 }
+
+.button-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.publication-content-button{
+    display: none;
+}
+.visible{
+    display: inline;
+}
+.publication-btn-active{
+    background-color: red;
+}

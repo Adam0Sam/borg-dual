@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import fetchAPI from '../utils/api';
 import { getStrapiURL } from "../utils/api";
 
@@ -74,7 +74,7 @@ function LogoComponent({ logos }) {
 }
 
 function EventComponent({ events }) {
-    
+
     return (
         <>
             {
@@ -89,6 +89,89 @@ function EventComponent({ events }) {
                     )
                 })
             }
+        </>
+    )
+}
+
+function PublicationContentComponent({ publicationLinks }) {
+    const [publicationContent, setPublicationContent] = useState([]);
+    const buttonRef = useRef(null);
+    const [activeButtonIndex, setActiveButtonIndex] = useState(0);
+
+    useEffect(() => {
+        if (buttonRef.current) {
+            buttonRef.current.click();
+        }
+    }, [publicationLinks])
+
+    const handleClick = (text, index) => {
+        setPublicationContent(text);
+        setActiveButtonIndex(index);
+    }
+
+    return (
+        <>
+            <div className="buttonContainer">
+                {publicationLinks.map((link, index) =>
+                    <button
+                        ref={index === 0 ? buttonRef : null}
+                        onClick={() => handleClick(link.publication.data.attributes.RichText, index)}
+                        key={link.name}
+                        className={`
+                        publication-content-button 
+                        ${publicationLinks.length > 1 ? "visible" : ""} 
+                        ${index === activeButtonIndex ? "publication-btn-active" : ""}
+                        `}
+                    >{link.name}
+                    </button>
+                )}
+            </div>
+            <RichTextComponent text={publicationContent} />
+        </>
+    )
+
+}
+
+function PublicationComponent({ publicationButtons }) {
+    const [publicationLinks, setPublicationLinks] = useState([]);
+    const publicationBtnRef = useRef(null);
+    const [activeButtonIndex, setActiveButtonIndex] = useState(0);
+
+    useEffect(() => {
+        if (publicationBtnRef.current) {
+            publicationBtnRef.current.click();
+        }
+    }, [])
+
+    const handleClick = (links, index) => {
+        setPublicationLinks(links);
+        setActiveButtonIndex(index);
+    }
+
+    return (
+        <>
+            <div className="buttonContainer">
+                {
+                    publicationButtons.map((publicationButton, index) => {
+                        return <button
+                            ref={index === 0 ? publicationBtnRef : null}
+                            onClick={() => handleClick(publicationButton.PublicationLink, index)}
+                            data-name={publicationButton.name}
+                            key={publicationButton.name}
+                            className={index === activeButtonIndex ? "publication-btn-active" : ""}
+                        >
+                            {publicationButton.name}
+                        </button>
+                    })
+                }
+            </div>
+            <div>
+                {publicationLinks.length > 0 &&
+                    < PublicationContentComponent
+                        publicationLinks={publicationLinks}
+                    />}
+
+            </div>
         </>
     )
 }
@@ -115,52 +198,30 @@ export default function CustomPage() {
         fetchContent();
     }, [postSlug])
 
-    // TODO: Make this more generic
-    const hasRichText = (content) => {
-        if (content.RichText?.length > 0) {
+
+    const isIncluded = (component, content) => {
+        if (content[component]?.length > 0) {
             return true;
         }
         return false;
     }
     const modifyArray = (textArray, type) => {
-        switch (type) {
-            case 'news':
-                return [...textArray].reverse();
-            case 'events':
-                return [...textArray].reverse();
-            default:
-                return textArray;
+        const textToReverse = ["events", "news"];
+        if (textToReverse.includes(type)) {
+            return [...textArray].reverse();
         }
-    }
+        return textArray;
 
-    const hasCountries = (content) => {
-        if (content.Countries?.length > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    const hasLogo = (content) => {
-        if (content.Logos?.length > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    const hasEvent = (content) => {
-        if (content.Events?.length > 0) {
-            return true;
-        }
-        return false;
     }
 
     return (
         <div>
             <h1>{content.name}</h1>
-            {hasRichText(content) && < RichTextComponent text={modifyArray(content.RichText, postSlug)} />}
-            {hasCountries(content) && < CountriesComponent countries={content.Countries} />}
-            {hasLogo(content) && < LogoComponent logos={content.Logos} />}
-            {hasEvent(content) && < EventComponent events={modifyArray(content.Events, postSlug)} />}
+            {isIncluded("RichText", content) && < RichTextComponent text={modifyArray(content.RichText, postSlug)} />}
+            {isIncluded("Countries", content) && < CountriesComponent countries={content.Countries} />}
+            {isIncluded("Logos", content) && < LogoComponent logos={content.Logos} />}
+            {isIncluded("Events", content) && < EventComponent events={modifyArray(content.Events, postSlug)} />}
+            {isIncluded("PublicationButtons", content) && < PublicationComponent publicationButtons={content.PublicationButtons} />}
         </div>
     )
 }

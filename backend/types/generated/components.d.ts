@@ -109,7 +109,6 @@ export interface PublicationPublicationLink extends Schema.Component {
   info: {
     displayName: 'Publication Link';
     icon: 'link';
-    description: '';
   };
   attributes: {
     name: Attribute.String;

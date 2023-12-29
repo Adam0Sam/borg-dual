@@ -12,10 +12,17 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "name": {
+      "type": "string"
+    },
     "RichText": {
       "type": "component",
-      "repeatable": false,
+      "repeatable": true,
       "component": "page.rich-text"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
     }
   }
 }
