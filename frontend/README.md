@@ -2,7 +2,6 @@
 
 
 > Page templates (High Priority)
-- Create `publication` collection type and make dynamic [publications page](http://borg.licejus.lt/publications.html)
 - Create gallery component
 - Can you [insert table](http://borg.licejus.lt/community.html) in RichText?
 - Create [task example components](http://borg.licejus.lt/examples.html)
