@@ -3,6 +3,8 @@ import fetchAPI from '../utils/api';
 
 import CustomBlocksRenderer from '../components/CustomBlocksRenderer';
 import InfoRow from '../components/InfoRow';
+import Tasks from '../components/Tasks';
+
 
 export default function Home() {
     const [content, setContent] = useState([]);
@@ -39,6 +41,7 @@ export default function Home() {
                         <>
                             <CustomBlocksRenderer content={content.Alert.TextInstance} />
                             < InfoRow infoRow={content.InfoRowOne} />
+                            < Tasks taskLinks={content.TaskLinks} type="home" />
                             < InfoRow infoRow={content.InfoRowTwo} />
                         </>
                     ) :
