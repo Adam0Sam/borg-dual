@@ -1,27 +1,8 @@
 import { useState, useEffect } from 'react';
 import fetchAPI from '../utils/api';
-import { getStrapiURL } from '../utils/api';
 
 import CustomBlocksRenderer from '../components/CustomBlocksRenderer';
-
-const InfoRowComponent = ({ infoRow }) => {
-    return (
-        <div className='info-row-container'>
-            {infoRow.map((info) => {
-                return (
-                    <div>
-                        <h3>{info.name}</h3>
-                        <CustomBlocksRenderer content={info.TextInstance} />
-                        <img
-                            src={getStrapiURL(info.image.data.attributes?.url)}
-                            alt={`${info.name}`}>
-                        </img>
-                    </div>
-                )
-            })}
-        </div>
-    )
-}
+import InfoRow from '../components/InfoRow';
 
 export default function Home() {
     const [content, setContent] = useState([]);
@@ -57,8 +38,8 @@ export default function Home() {
                     (
                         <>
                             <CustomBlocksRenderer content={content.Alert.TextInstance} />
-                            < InfoRowComponent infoRow={content.InfoRowOne} />
-                            < InfoRowComponent infoRow={content.InfoRowTwo} />
+                            < InfoRow infoRow={content.InfoRowOne} />
+                            < InfoRow infoRow={content.InfoRowTwo} />
                         </>
                     ) :
                     (<h1>Missing content</h1>)
