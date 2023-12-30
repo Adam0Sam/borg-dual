@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_task_task_examples",
+  "info": {
+    "displayName": "Task Example",
+    "icon": "puzzle",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "info": {
+      "type": "string"
+    },
+    "RichText": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page.rich-text"
+    },
+    "cover": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

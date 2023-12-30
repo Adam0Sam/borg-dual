@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_task_task_links",
+  "info": {
+    "displayName": "Task Link",
+    "icon": "link"
+  },
+  "options": {},
+  "attributes": {
+    "task": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::task.task"
+    }
+  }
+}
