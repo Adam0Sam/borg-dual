@@ -120,6 +120,32 @@ export interface PublicationPublicationLink extends Schema.Component {
   };
 }
 
+export interface TaskTaskExample extends Schema.Component {
+  collectionName: 'components_task_task_examples';
+  info: {
+    displayName: 'Task Example';
+    icon: 'puzzle';
+    description: '';
+  };
+  attributes: {
+    name: Attribute.String;
+    info: Attribute.String;
+    RichText: Attribute.Component<'page.rich-text', true>;
+    cover: Attribute.Media;
+  };
+}
+
+export interface TaskTaskLink extends Schema.Component {
+  collectionName: 'components_task_task_links';
+  info: {
+    displayName: 'Task Link';
+    icon: 'link';
+  };
+  attributes: {
+    task: Attribute.Relation<'task.task-link', 'oneToOne', 'api::task.task'>;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -132,6 +158,8 @@ declare module '@strapi/types' {
       'page.rich-text': PageRichText;
       'publication.publication-button': PublicationPublicationButton;
       'publication.publication-link': PublicationPublicationLink;
+      'task.task-example': TaskTaskExample;
+      'task.task-link': TaskTaskLink;
     }
   }
 }

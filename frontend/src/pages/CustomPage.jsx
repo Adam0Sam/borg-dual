@@ -7,6 +7,7 @@ import PublicationOuter from "../components/PublicationOuter";
 import Events from "../components/Events";
 import Logos from "../components/Logos";
 import Countries from "../components/Countries";
+import Tasks from "../components/Tasks";
 
 export default function CustomPage() {
     const params = useParams();
@@ -54,6 +55,7 @@ export default function CustomPage() {
             {isIncluded("Logos", content) && < Logos logos={content.Logos} />}
             {isIncluded("Events", content) && < Events events={modifyArray(content.Events, postSlug)} />}
             {isIncluded("PublicationButtons", content) && < PublicationOuter publicationButtons={content.PublicationButtons} />}
+            {isIncluded("TaskLinks", content) && < Tasks taskLinks={content.TaskLinks} type="page" />}
         </div>
     )
 }

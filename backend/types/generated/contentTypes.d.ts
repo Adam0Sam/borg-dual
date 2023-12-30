@@ -789,6 +789,7 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
       Attribute.SetMinMax<{
         max: 3;
       }>;
+    TaskLinks: Attribute.Component<'task.task-link', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -865,6 +866,7 @@ export interface ApiPagePage extends Schema.CollectionType {
     PublicationButtons: Attribute.DynamicZone<
       ['publication.publication-button']
     >;
+    TaskLinks: Attribute.DynamicZone<['task.task-link']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -908,6 +910,32 @@ export interface ApiPublicationPublication extends Schema.CollectionType {
   };
 }
 
+export interface ApiTaskTask extends Schema.CollectionType {
+  collectionName: 'tasks';
+  info: {
+    singularName: 'task';
+    pluralName: 'tasks';
+    displayName: 'Task';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    age: Attribute.String;
+    TaskExamples: Attribute.Component<'task.task-example', true>;
+    slug: Attribute.UID<'api::task.task', 'name'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::task.task', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::task.task', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -930,6 +958,7 @@ declare module '@strapi/types' {
       'api::navigation-collection.navigation-collection': ApiNavigationCollectionNavigationCollection;
       'api::page.page': ApiPagePage;
       'api::publication.publication': ApiPublicationPublication;
+      'api::task.task': ApiTaskTask;
     }
   }
 }

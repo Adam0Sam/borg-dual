@@ -351,3 +351,13 @@ img{
 .publication-btn-active{
     background-color: red;
 }
+.task-block{
+    margin: 1rem 0;
+    cursor: pointer;
+}
+.task-content{
+    display: none;
+}
+.task-content.visible{
+    display: block;
+}

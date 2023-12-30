@@ -47,6 +47,12 @@
       "components": [
         "publication.publication-button"
       ]
+    },
+    "TaskLinks": {
+      "type": "dynamiczone",
+      "components": [
+        "task.task-link"
+      ]
     }
   }
 }

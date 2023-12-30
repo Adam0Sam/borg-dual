@@ -30,6 +30,11 @@
         "home.info-column"
       ],
       "max": 3
+    },
+    "TaskLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "task.task-link"
     }
   }
 }
