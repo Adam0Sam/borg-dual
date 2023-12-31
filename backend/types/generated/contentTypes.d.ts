@@ -867,6 +867,7 @@ export interface ApiPagePage extends Schema.CollectionType {
       ['publication.publication-button']
     >;
     TaskLinks: Attribute.DynamicZone<['task.task-link']>;
+    ImageGalleries: Attribute.DynamicZone<['gallery.image-gallery']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

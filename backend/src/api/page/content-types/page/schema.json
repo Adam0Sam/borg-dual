@@ -53,6 +53,12 @@
       "components": [
         "task.task-link"
       ]
+    },
+    "ImageGalleries": {
+      "type": "dynamiczone",
+      "components": [
+        "gallery.image-gallery"
+      ]
     }
   }
 }

@@ -8,6 +8,7 @@ import Events from "../components/Events";
 import Logos from "../components/Logos";
 import Countries from "../components/Countries";
 import Tasks from "../components/Tasks";
+import ImageGalleries from "../components/ImageGalleries";
 
 export default function CustomPage() {
     const params = useParams();
@@ -19,6 +20,7 @@ export default function CustomPage() {
     const fetchContent = async () => {
         try {
             const data = await fetchAPI(`/api/pages/${postSlug}`);
+            console.log(data.data.attributes);
             setContent(data.data.attributes);
             setLoading(false);
         }
@@ -33,6 +35,7 @@ export default function CustomPage() {
 
 
     const isIncluded = (component, content) => {
+        
         if (content[component]?.length > 0) {
             return true;
         }
@@ -56,6 +59,7 @@ export default function CustomPage() {
             {isIncluded("Events", content) && < Events events={modifyArray(content.Events, postSlug)} />}
             {isIncluded("PublicationButtons", content) && < PublicationOuter publicationButtons={content.PublicationButtons} />}
             {isIncluded("TaskLinks", content) && < Tasks taskLinks={content.TaskLinks} type="page" />}
+            {isIncluded("ImageGalleries", content) && < ImageGalleries imageGalleries={content.ImageGalleries}/>}
         </div>
     )
 }

@@ -337,7 +337,7 @@ img{
 
 .button-container{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     margin-bottom: 1rem;
 }

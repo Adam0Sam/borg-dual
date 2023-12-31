@@ -12,6 +12,20 @@ export interface EventEvent extends Schema.Component {
   };
 }
 
+export interface GalleryImageGallery extends Schema.Component {
+  collectionName: 'components_gallery_image_galleries';
+  info: {
+    displayName: 'Image Gallery';
+    icon: 'apps';
+    description: '';
+  };
+  attributes: {
+    name: Attribute.String;
+    info: Attribute.String;
+    images: Attribute.Media;
+  };
+}
+
 export interface HomeAlert extends Schema.Component {
   collectionName: 'components_home_alerts';
   info: {
@@ -150,6 +164,7 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'event.event': EventEvent;
+      'gallery.image-gallery': GalleryImageGallery;
       'home.alert': HomeAlert;
       'home.info-column': HomeInfoColumn;
       'icon.country': IconCountry;
