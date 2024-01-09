@@ -1,7 +1,7 @@
 // TODO: Create API tokens
 export function getStrapiURL(path = '') {
     return `${
-        process.env.PUBLIC_STRAPI_API_URL || 'http://localhost:1337'
+        'https://borg.licejus.lt'
     }${path}`;
 }
 

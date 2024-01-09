@@ -1,5 +1,5 @@
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
-
+import {getStrapiURL} from '../utils/api'
 // TODO: Add option to pass custom blocks/modifiers
 export default function CustomBlocksRenderer({ content }) {
 
@@ -22,7 +22,10 @@ export default function CustomBlocksRenderer({ content }) {
                         return <br></br>
                     }
                     return <p>{children}</p>
-                }
+                },
+		image: ({image}) => {
+		const url = new URL(image.url);
+		return <img src={getStrapiURL(url.pathname)}></img>}
             }}
         />
     )

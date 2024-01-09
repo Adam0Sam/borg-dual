@@ -15,10 +15,12 @@ export default function Home() {
         try {
             // modify home-page controller if you dont want to pass additional options
             const data = await fetchAPI('/api/home-page?populate=deep');
-            setContent(data.data.attributes);
+	console.log("data: ", data.data.attributes);            
+setContent(data.data.attributes);
             setLoading(false);
         }
         catch (err) {
+		console.log("myerr: ", err);
             setError(err.status + ": " + err.statusText);
         }
     }

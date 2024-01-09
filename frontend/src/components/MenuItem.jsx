@@ -10,7 +10,7 @@ export default function MenuItem({ slug, name }) {
 
     const fetchMenuChildren = async (slug) => {
         try {
-            const response = await fetch(`http://localhost:1337/api/navigation-collections/${slug}`);
+            const response = await fetch(`/api/navigation-collections/${slug}`);
             const data = await response.json();
             const childArray = data.data.attributes.NavLink;
             if (childArray.length === 0) {
