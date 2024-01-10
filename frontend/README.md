@@ -13,8 +13,7 @@
 - Make the Navbar mobile friendly with valid pointer-events and click handling
 - Create visual error handling for all components
 - Create API tokens
-- Create a better way for checking unique dynamic zones in `CustomPage.js` (maybe implement single types instead of collection types in strapi?)
-
+- 
 > Future potential (Low priority)
 - Implement professional, production ready React Hooks for Data Fetching (*something like SWR Vercel?*)
 - Add option to pass custom blocks/modifiers to `CustomBlockRenderer.js`
