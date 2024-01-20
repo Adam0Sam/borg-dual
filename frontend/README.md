@@ -2,9 +2,7 @@
 
 
 > Page templates (High Priority)
-- Create gallery component
-- Can you [insert table](http://borg.licejus.lt/community.html) in RichText?
-- Create [task example components](http://borg.licejus.lt/examples.html)
+- Can you [insert table]([http://borg.licejus.lt/community.html](https://www.bebras.org/structure.html)) in RichText?
 
 > Website and code improvements (Medium priority)
 - Optimize content loading by specifying `populate` parameter
