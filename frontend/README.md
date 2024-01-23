@@ -8,10 +8,9 @@
 - Optimize content loading by specifying `populate` parameter
 - Create more optimal Navbar animations with `transform` instead of `top`
 - Make a smoother transition from nav__burger to nav__close usign` ::before` and `::after` pseudoclasses
-- Make the Navbar mobile friendly with valid pointer-events and click handling
 - Create visual error handling for all components
 - Create API tokens
-- 
+  
 > Future potential (Low priority)
 - Implement professional, production ready React Hooks for Data Fetching (*something like SWR Vercel?*)
 - Add option to pass custom blocks/modifiers to `CustomBlockRenderer.js`
