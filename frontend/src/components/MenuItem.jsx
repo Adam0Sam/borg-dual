@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import fetchAPI from '../utils/api';
 import { RiArrowDownSLine } from '@remixicon/react';
 
 
@@ -10,9 +11,8 @@ export default function MenuItem({ slug, name }) {
 
     const fetchMenuChildren = async (slug) => {
         try {
-            const response = await fetch(`/api/navigation-collections/${slug}`);
-            const data = await response.json();
-            const childArray = data.data.attributes.NavLink;
+            const response = await fetchAPI(`/api/navigation-collections/${slug}`);
+            const childArray = response.data.attributes.NavLink;
             if (childArray.length === 0) {
                 setError('No children found');
             }

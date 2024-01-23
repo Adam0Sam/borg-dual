@@ -20,7 +20,6 @@ export default function CustomPage() {
     const fetchContent = async () => {
         try {
             const data = await fetchAPI(`/api/pages/${postSlug}`);
-            console.log(data.data.attributes);
             setContent(data.data.attributes);
             setLoading(false);
         }

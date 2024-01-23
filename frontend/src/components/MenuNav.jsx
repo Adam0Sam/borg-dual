@@ -46,13 +46,15 @@ export default function MenuNav() {
                 </div>
                 <div className='nav__menu' id='nav-menu' ref={navMenu}>
                     <ul className='nav__list'>
-                        {menuItems.map((item) => (
+                        {menuItems.map((item) => {
+                            console.log("item: ",item.attributes.slug);
+                            return(
                             <MenuItem
                                 key={item.attributes.slug}
                                 slug={item.attributes.slug}
                                 name={item.attributes.name}
                             />
-                        ))}
+                        )})}
                     </ul>
                 </div>
             </nav>
