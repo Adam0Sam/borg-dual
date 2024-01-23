@@ -4,7 +4,7 @@ import MenuItem from './MenuItem'; // Import the MenuItem component
 import fetchAPI from '../utils/api';
 
 // from: https://remixicon.com/
-import { RiHeartFill, RiMenuLine, RiCloseLine } from '@remixicon/react';
+import { RiMenuLine, RiCloseLine } from '@remixicon/react';
 
 export default function MenuNav() {
     const [menuItems, setMenuItems] = useState([]);
@@ -29,10 +29,11 @@ export default function MenuNav() {
         <header className='header'>
             <nav className='nav container'>
                 <div className='nav__data'>
-                    <NavLink to='/' className="nav__logo">
-                        <RiHeartFill
-                        />
-                        Home
+                    <NavLink to='/' className='nav__logo'>
+                        <img className='nav__logo-img' src='/logo.png'></img>
+                        <h3 className='nav__logo-text'>
+                            International Challenge on Informatics and Computational Thinking
+                        </h3>
                     </NavLink>
 
                     <div className='nav__toggle' id='nav-toggle' ref={navToggle} onClick={handleToggleClick}>
@@ -47,14 +48,16 @@ export default function MenuNav() {
                 <div className='nav__menu' id='nav-menu' ref={navMenu}>
                     <ul className='nav__list'>
                         {menuItems.map((item) => {
-                            console.log("item: ",item.attributes.slug);
-                            return(
-                            <MenuItem
-                                key={item.attributes.slug}
-                                slug={item.attributes.slug}
-                                name={item.attributes.name}
-                            />
-                        )})}
+                            console.log("item: ", item.attributes.slug);
+                            return (
+                                <MenuItem
+                                    key={item.attributes.slug}
+                                    slug={item.attributes.slug}
+                                    name={item.attributes.name}
+                                    toggleClick={handleToggleClick}
+                                />
+                            )
+                        })}
                     </ul>
                 </div>
             </nav>

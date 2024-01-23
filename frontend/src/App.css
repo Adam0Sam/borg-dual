@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
 
 :root {
-    --header-height: 3.5rem;
+    --header-height-mobile: 5.5rem;
+    --header-height-desktop: 6.5rem;
 
     /*========== Colors ==========*/
     /*Color mode HSL(hue, saturation, lightness)*/
@@ -10,6 +11,8 @@
     --black-color-lighten: hsl(220, 20%, 18%);
     --white-color: #fff;
     --body-color: hsl(220, 100%, 97%);
+    --electric-blue-color: #009fe3;
+    --electric-blue-color-light: #00acf6;
 
     /*========== Font and typography ==========*/
     /*.5rem = 8px | 1rem = 16px ...*/
@@ -44,6 +47,7 @@ body {
     font-family: var(--body-font);
     font-size: var(--normal-font-size);
     background-color: var(--body-color);
+    scroll-behavior: smooth;
 }
 
 ul {
@@ -65,19 +69,19 @@ a {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: var(--black-color);
+    background-color: var(--electric-blue-color);
     box-shadow: 0 2px 16px hsla(220, 32%, 8%, .3);
     z-index: var(--z-fixed);
 }
 
+
 /*========== Nav ==========*/
 .nav {
-    height: var(--header-height);
+    height: var(--header-height-mobile);
 }
 
 .main{
-    margin-top: var(--header-height);
-
+    margin-top: var(--header-height-mobile);
 }
 
 .nav__logo,
@@ -101,10 +105,16 @@ a {
     font-weight: var(--font-semi-bold);
 }
 
-.nav__logo svg {
+.nav__logo-img {
     font-weight: initial;
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 3rem;
+    height: 3rem;
+}
+
+.nav__logo-text {
+    font-size: 1.25rem;
+    color: var(--black-color);
+    max-width: 25rem;
 }
 
 .nav__toggle {
@@ -120,8 +130,8 @@ a {
     height: max-content;
     inset: 0;
     margin: auto;
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 2rem;
+    height: 2rem;
     cursor: pointer;
     transition: opacity .1s, transform .4s;
 }
@@ -135,14 +145,14 @@ a {
     .nav__menu {
         position: absolute;
         left: 0;
-        top: calc(var(--header-height) - 1rem);
+        top: calc(var(--header-height-mobile) - 1rem);
+        top: 10rem;
         width: 100%;
-        height: calc(100vh - var(--header-height));
+        height: calc(100vh - var(--header-height-mobile));
         overflow: auto;
-        pointer-events: none;
+        /* pointer-events: none; */
         opacity: 0;
         transition: top .4s, opacity .3s;
-
     }
 
     /* Hide Scroll Bar */
@@ -155,7 +165,7 @@ a {
     }
 
     .nav__list {
-        background-color: var(--black-color);
+        background-color: var(--electric-blue-color);
         padding-top: 1rem;
         height: max-content;
     }
@@ -163,7 +173,7 @@ a {
 
 .nav__link {
     color: var(--white-color);
-    background-color: var(--black-color);
+    background-color: var(--electric-blue-color);
     font-weight: var(--font-semi-bold);
     padding: 1.25rem 1.5rem;
     display: flex;
@@ -172,14 +182,14 @@ a {
     transition: background-color .3s;
 }
 
-.nav__link:hover {
-    background-color: var(--black-color-light);
+.nav__link:hover{
+    background-color: var(--electric-blue-color-light);
 }
 
 /* Show menu */
 .show-menu {
     opacity: 1;
-    top: 3.5rem;
+    top: var(--header-height-mobile);
     pointer-events: initial;
 }
 
@@ -207,7 +217,7 @@ a {
 .dropdown__link {
     padding: 1.25rem 1.25rem 1.25rem 2.5rem;
     color: var(--white-color);
-    background-color: var(--black-color-light);
+    background-color: var(--electric-blue-color-light);
     display: flex;
     align-items: center;
     /* gap: .5rem */
@@ -215,8 +225,8 @@ a {
     transition: background-color .3s;
 }
 
-.dropdown__link:hover {
-    background-color: var(--black-color);
+.dropdown__link:hover{
+    background-color: var(--electric-blue-color);
 }
 
 .dropdown__menu {
@@ -226,20 +236,25 @@ a {
 }
 
 /* Show dropdown menu & submenu */
-.dropdown__item:hover .dropdown__menu {
+.dropdown__menu.active {
     max-height: 100vh;
 }
 
 /* Rotate dropdown icon */
-.dropdown__item:hover .dropdown__arrow {
+.dropdown__arrow.active {
     transform: rotate(180deg);
 }
 
 /*========== Breakpoints ==========*/
 /* For small devices */
-@media screen and (max-width: 340px) {
+@media screen and (max-width: 450px) {
     .container {
         margin-inline: 1rem;
+    }
+
+    .nav__logo-text {
+        font-size: 1rem;
+        max-width: 15rem;
     }
 
     .nav__link {
@@ -250,9 +265,12 @@ a {
 /* For large devices */
 @media screen and (min-width: 1118px) {
     .nav {
-        height: var(--header-height);
+        height: var(--header-height-desktop);
         display: flex;
         justify-content: space-between;
+    }
+    .main{
+        margin-top: var(--header-height-desktop);
     }
 
     .nav__toggle {
@@ -285,11 +303,20 @@ a {
         overflow: initial;
         position: absolute;
         left: 0;
-        top: 6rem;
+        top: calc(var(--header-height-desktop) - 1rem);
         opacity: 0;
-        pointer-events: none;
+        /* pointer-events: none; */
         transition: opacity .3s, top .3s;
     }
+
+    .dropdown__item:hover .dropdown__menu{
+        max-height: 100vh;
+    }
+
+    .dropdown__item:hover .dropdown__arrow{
+        transform: rotate(180deg);
+    }
+
 
     .dropdown__link{
         padding-inline: 1rem 3.5rem;
@@ -302,7 +329,7 @@ a {
     /* Show dropdown menu */
     .dropdown__item:hover .dropdown__menu {
         opacity: 1;
-        top: 3.5rem;
+        top: calc(var(--header-height-desktop));
         pointer-events: initial;
         transition: top .3s;
     }

@@ -30,6 +30,7 @@ export default function CustomPage() {
 
     useEffect(() => {
         fetchContent();
+        window.scrollTo(0, 0);
     }, [postSlug])
 
 
