@@ -150,7 +150,6 @@ a {
         width: 100%;
         height: calc(100vh - var(--header-height-mobile));
         overflow: auto;
-        /* pointer-events: none; */
         opacity: 0;
         transition: top .4s, opacity .3s;
     }
@@ -190,7 +189,6 @@ a {
 .show-menu {
     opacity: 1;
     top: var(--header-height-mobile);
-    pointer-events: initial;
 }
 
 .show-icon .nav__burger {
@@ -305,7 +303,6 @@ a {
         left: 0;
         top: calc(var(--header-height-desktop) - 1rem);
         opacity: 0;
-        /* pointer-events: none; */
         transition: opacity .3s, top .3s;
     }
 
@@ -330,7 +327,6 @@ a {
     .dropdown__item:hover .dropdown__menu {
         opacity: 1;
         top: calc(var(--header-height-desktop));
-        pointer-events: initial;
         transition: top .3s;
     }
 }
