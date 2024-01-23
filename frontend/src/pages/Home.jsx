@@ -15,12 +15,11 @@ export default function Home() {
         try {
             // modify home-page controller if you dont want to pass additional options
             const data = await fetchAPI('/api/home-page?populate=deep');
-	console.log("data: ", data.data.attributes);            
-setContent(data.data.attributes);
+            setContent(data.data.attributes);
             setLoading(false);
         }
         catch (err) {
-		console.log("myerr: ", err);
+            console.log("myerr: ", err);
             setError(err.status + ": " + err.statusText);
         }
     }
@@ -36,15 +35,20 @@ setContent(data.data.attributes);
 
 
     return (
-        <div>
+        <div className='home'>
             {
                 (content.Alert && content.InfoRowOne && content.InfoRowTwo) ?
                     (
                         <>
-                            <CustomBlocksRenderer content={content.Alert.TextInstance} />
-                            < InfoRow infoRow={content.InfoRowOne} />
+                            <div className='alert-message'>
+                                <CustomBlocksRenderer content={content.Alert.TextInstance} />
+                            </div>
+                            < InfoRow infoRow={content.InfoRowOne} customClass={'row-one'}/>
                             < Tasks taskLinks={content.TaskLinks} type="home" />
-                            < InfoRow infoRow={content.InfoRowTwo} />
+                            < InfoRow infoRow={content.InfoRowTwo} customClass={'row-two'}/>
+                            <div className='footer'>
+                                VU Temp
+                            </div>
                         </>
                     ) :
                     (<h1>Missing content</h1>)
