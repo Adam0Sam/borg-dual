@@ -32,7 +32,7 @@ export default function Tasks({ taskLinks, type }) {
                         )
                     })
                 }
-            </div>
+            </div >
 
         )
     }
