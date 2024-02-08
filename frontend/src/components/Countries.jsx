@@ -9,7 +9,7 @@ export default function Countries({ countries }) {
                         <div>
                             <h4>{country.name}</h4>
                             <p>{country.info}</p>
-                            <a href={`http://${country.url}`} target="_blank" rel="noreferrer">
+                            <a href={country.url} target="_blank" rel="noreferrer">
                                 <img
                                     src={getStrapiURL(country.flag.data.attributes?.url)}
                                     alt={`${country.name}`}>
