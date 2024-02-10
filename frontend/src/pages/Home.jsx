@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import fetchAPI from '../utils/api';
-
+// Home Page components
 import CustomBlocksRenderer from '../components/CustomBlocksRenderer';
 import InfoRow from '../components/InfoRow';
 import Tasks from '../components/Tasks';
-
 
 export default function Home() {
     const [content, setContent] = useState([]);
@@ -13,8 +12,8 @@ export default function Home() {
 
     const fetchContent = async () => {
         try {
-            // modify home-page controller if you dont want to pass additional options
-            const data = await fetchAPI('/api/home-page?populate=deep');
+            const data = await fetchAPI('/api/home-page');
+            console.log("mydata: ", data);
             setContent(data.data.attributes);
             setLoading(false);
         }

@@ -6,7 +6,6 @@ export function getStrapiURL(path = '') {
 }
 
 export default async function fetchAPI(path, options = {}) {
-
     try{
         const mergedOptions = {
             headers: {
@@ -15,6 +14,7 @@ export default async function fetchAPI(path, options = {}) {
             },
             ...options,
         };
+        console.log("myoptions: ", mergedOptions);
         const res = await fetch(getStrapiURL(path), mergedOptions);
         const data = await res.json();
         return data;
