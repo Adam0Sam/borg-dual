@@ -11,7 +11,7 @@ function App() {
       <BrowserRouter>
         <MenuNav />
         <main className='main'>
-          <Routes className='main'>
+          <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/:slug" element={<CustomPage />} />
           </Routes>

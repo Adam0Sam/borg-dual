@@ -63,6 +63,7 @@ a {
 .container {
     margin-inline: 1.5rem;
 }
+
 /* ========== NAVIGATION MENU ========== */
 /*========== Header ==========*/
 .header {
@@ -81,7 +82,7 @@ a {
     height: var(--header-height-mobile);
 }
 
-.main{
+.main {
     margin-top: var(--header-height-mobile);
 }
 
@@ -183,7 +184,7 @@ a {
     transition: background-color .3s;
 }
 
-.nav__link:hover{
+.nav__link:hover {
     background-color: var(--electric-blue-color-light);
 }
 
@@ -206,17 +207,16 @@ a {
 /*========== Dropdown ==========*/
 
 .dropdown__item,
-.dropdown__menu, 
+.dropdown__menu,
 .nav__link {
     pointer-events: none;
 }
 
 .nav__menu.show-menu .dropdown__item,
 .nav__menu.show-menu .dropdown__menu,
-.nav__menu.show-menu .nav__link{
+.nav__menu.show-menu .nav__link {
     pointer-events: initial;
 }
-
 
 .dropdown__item {
     cursor: pointer;
@@ -239,7 +239,7 @@ a {
     transition: background-color .3s;
 }
 
-.dropdown__link:hover{
+.dropdown__link:hover {
     background-color: var(--electric-blue-color);
 }
 
@@ -283,7 +283,8 @@ a {
         display: flex;
         justify-content: space-between;
     }
-    .main{
+
+    .main {
         margin-top: var(--header-height-desktop);
     }
 
@@ -295,6 +296,14 @@ a {
         height: 100%;
         display: flex;
         column-gap: 3rem;
+    }
+
+    .dropdown__item {
+        pointer-events: initial;
+        position: relative;
+        min-width: 8rem;
+        display: flex;
+        justify-content: center;
     }
 
     .nav__link {
@@ -309,12 +318,7 @@ a {
         background-color: transparent;
     }
 
-    .dropdown__item{
-        pointer-events: initial;
-        position: relative;
-    }
-
-    .dropdown__menu{
+    .dropdown__menu {
         max-height: initial;
         overflow: initial;
         position: absolute;
@@ -333,11 +337,11 @@ a {
         transition: top .3s;
     }
 
-    .dropdown__item:hover .dropdown__arrow{
+    .dropdown__item:hover .dropdown__arrow {
         transform: rotate(180deg);
     }
 
-    .dropdown__link{
+    .dropdown__link {
         padding-inline: 1rem 3.5rem;
     }
 
@@ -349,11 +353,11 @@ a {
 }
 
 /*========== ERROR MODAL ==========*/
-.error{
+.error {
     color: red;
 }
 
-.nav-error{
+.nav-error {
     color: red;
     height: var(--header-height);
     max-width: 150px;
@@ -364,24 +368,26 @@ a {
 }
 
 /* ========== HOMEPAGE ========== */
-.home{
+.home {
     display: flex;
     flex-direction: column;
     gap: 3rem;
 }
+
 /* ========== Alert ========== */
-.alert-message{
+.alert-message {
     padding: 1rem;
     background-color: var(--black-color);
     color: var(--electric-yellow)
 }
-.alert-message>p{
+
+.alert-message>p {
     margin: 0 auto;
     max-width: 80%;
 }
 
 /* ========== Info Rows ========== */
-.info-row{
+.info-row {
     display: flex;
     justify-content: center;
     align-items: stretch;
@@ -389,62 +395,77 @@ a {
     overflow: auto;
 }
 
-.info-column{
+.info-column {
     flex-basis: 25rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.info-row.row-two .info-column{
+.info-row.row-two .info-column {
     flex-direction: column-reverse;
-    align-items : center;
+    align-items: center;
 }
 
-.info-text>h3{
+.info-text>h3 {
     margin-bottom: 1rem;
 }
 
-.info-row.row-two .info-text>h3{
+.info-row.row-two .info-text>h3 {
     text-align: center;
-}   
+}
 
-.button-container{
+.button-container {
     background-color: var(--electric-blue-color-light);
 }
 
+/* ========== UTILITIES ========== */
+.grid-container{
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+
+
 /* ========== TEMPORARY ========== */
-img{
+img {
     max-width: 400px;
 }
 
-.button-container{
+.button-container {
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin-bottom: 1rem;
 }
 
-.publication-content-button{
+.publication-content-button {
     display: none;
 }
-.visible{
+
+.visible {
     display: inline;
 }
-.publication-btn-active{
+
+.publication-btn-active {
     background-color: red;
 }
-.task-block{
+
+.task-block {
     margin: 1rem 0;
     cursor: pointer;
 }
-.task-content{
+
+.task-content {
     display: none;
 }
-.task-content.visible{
+
+.task-content.visible {
     display: block;
 }
-.footer{
+
+.footer {
     border-top: 1px solid var(--black-color);
     padding: 2rem 0;
     text-align: center;

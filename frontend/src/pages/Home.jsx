@@ -12,7 +12,7 @@ export default function Home() {
 
     const fetchContent = async () => {
         try {
-            const data = await fetchAPI('/api/home-page');
+            const data = await fetchAPI('/api/home-page?populate=deep');
             console.log("mydata: ", data);
             setContent(data.data.attributes);
             setLoading(false);
@@ -27,31 +27,28 @@ export default function Home() {
         fetchContent();
     }, [])
 
-
-    if (loading) return <h1>Loading...</h1>
-    if (error) return <h1>{error}</h1>
-
+    let returnContent = null;
+    if (loading) returnContent = <h1>Loading...</h1>
+    if (error) returnContent = <h1 className='error'>{error}</h1>
+    if (!(content.Alert && content.InfoRowOne && content.InfoRowTwo)) returnContent = <h1 className='error'>Missing content</h1>
+    else returnContent = (
+        <>
+            <div className='alert-message'>
+                <CustomBlocksRenderer content={content.Alert.TextInstance} />
+            </div>
+            <InfoRow infoRow={content.InfoRowOne} customClass={'row-one'} />
+            <Tasks taskLinks={content.TaskLinks} type="home" />
+            <InfoRow infoRow={content.InfoRowTwo} customClass={'row-two'} />
+            <div className='footer'>
+                VU Temp
+            </div>
+        </>
+    )
 
 
     return (
         <div className='home'>
-            {
-                (content.Alert && content.InfoRowOne && content.InfoRowTwo) ?
-                    (
-                        <>
-                            <div className='alert-message'>
-                                <CustomBlocksRenderer content={content.Alert.TextInstance} />
-                            </div>
-                            < InfoRow infoRow={content.InfoRowOne} customClass={'row-one'}/>
-                            < Tasks taskLinks={content.TaskLinks} type="home" />
-                            < InfoRow infoRow={content.InfoRowTwo} customClass={'row-two'}/>
-                            <div className='footer'>
-                                VU Temp
-                            </div>
-                        </>
-                    ) :
-                    (<h1>Missing content</h1>)
-            }
+            {returnContent}
         </div>
     )
 }
