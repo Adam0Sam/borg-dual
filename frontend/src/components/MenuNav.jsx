@@ -20,7 +20,7 @@ export default function MenuNav() {
         fetchMenuItems();
     }, []);
 
-    const handleToggleClick = (e) => {
+    const handleToggleClick = (e) => {  
         navMenu.current.classList.toggle('show-menu');
         navToggle.current.classList.toggle('show-icon');
     }

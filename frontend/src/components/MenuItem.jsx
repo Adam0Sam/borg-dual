@@ -34,7 +34,7 @@ export default function MenuItem({ slug, name, toggleClick }) {
     }, [slug]);
 
     const showMenu = () => {
-        if(!dropdownRef.current || !arrowContaineRef.current) return;
+        if (!dropdownRef.current || !arrowContaineRef.current) return;
         dropdownRef.current.classList.toggle('active');
         arrowContaineRef.current.querySelector('.dropdown__arrow').classList.toggle('active');
     }
@@ -45,7 +45,7 @@ export default function MenuItem({ slug, name, toggleClick }) {
             <li className="error nav-error">Something went wrong. {error}</li>
         )
     }
-    
+
     if (loading) {
         return (
             <li className="nav nav-error">Loading...</li>
@@ -69,15 +69,15 @@ export default function MenuItem({ slug, name, toggleClick }) {
             ) : (
                 <li
                     className='dropdown__item'
-                    onClick={showMenu}
                 >
                     <div
                         className="nav__link"
                         data-slug={slug}
                         key={slug}
+                        onClick={showMenu}
                         ref={arrowContaineRef}>
                         {name}
-                        <RiArrowDownSLine className='dropdown__arrow'/>
+                        <RiArrowDownSLine className='dropdown__arrow' />
                     </div>
 
                     <ul className='dropdown__menu' ref={dropdownRef}>

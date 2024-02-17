@@ -1,6 +1,8 @@
-import { getStrapiURL } from '../utils/api';
+import { getStrapiURL } from '../../utils/api';
 
-import CustomBlocksRenderer from '../components/CustomBlocksRenderer';
+import CustomBlocksRenderer from '../CustomBlocksRenderer';
+
+import './infoRow.css';
 
 export default function InfoRow({ infoRow, customClass }) {
     return (

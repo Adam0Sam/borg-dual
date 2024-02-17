@@ -1,0 +1,27 @@
+.info-row {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 8rem;
+    overflow: auto;
+}
+
+.info-column {
+    flex-basis: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-row.row-two .info-column {
+    flex-direction: column-reverse;
+}
+
+.info-text>h3 {
+    margin-bottom: 1rem;
+}
+
+.info-row.row-two .info-text>h3 {
+    text-align: center;
+}

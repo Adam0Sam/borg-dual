@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import fetchAPI from '../utils/api';
 // Home Page components
 import CustomBlocksRenderer from '../components/CustomBlocksRenderer';
-import InfoRow from '../components/InfoRow';
+import InfoRow from '../components/info-row/InfoRow';
 import Tasks from '../components/Tasks';
 
 export default function Home() {
