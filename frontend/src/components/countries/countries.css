@@ -3,6 +3,7 @@
 }
 .country{
     display: flex;
+    /* justify-content: ; */
     gap: 1rem;
     height: 50px;
     overflow: hidden;

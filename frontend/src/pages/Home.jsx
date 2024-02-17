@@ -3,7 +3,7 @@ import fetchAPI from '../utils/api';
 // Home Page components
 import CustomBlocksRenderer from '../components/CustomBlocksRenderer';
 import InfoRow from '../components/info-row/InfoRow';
-import Tasks from '../components/Tasks';
+import TaskRow from '../components/TaskRow';
 
 export default function Home() {
     const [content, setContent] = useState([]);
@@ -13,12 +13,10 @@ export default function Home() {
     const fetchContent = async () => {
         try {
             const data = await fetchAPI('/api/home-page?populate=deep');
-            console.log("mydata: ", data);
             setContent(data.data.attributes);
             setLoading(false);
         }
         catch (err) {
-            console.log("myerr: ", err);
             setError(err.status + ": " + err.statusText);
         }
     }
@@ -37,7 +35,7 @@ export default function Home() {
                 <CustomBlocksRenderer content={content.Alert.TextInstance} />
             </div>
             <InfoRow infoRow={content.InfoRowOne} customClass={'row-one'} />
-            <Tasks taskLinks={content.TaskLinks} type="home" />
+            <TaskRow taskLinks={content.TaskLinks} />
             <InfoRow infoRow={content.InfoRowTwo} customClass={'row-two'} />
             <div className='footer'>
                 VU Temp

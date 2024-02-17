@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import PublicationInner from './PublicationInner';
+import './publications.css';
 
 export default function PublicationOuter({ publicationButtons }) {
     const [publicationLinks, setPublicationLinks] = useState([]);
     const publicationBtnRef = useRef(null);
     const [activeButtonIndex, setActiveButtonIndex] = useState(0);
 
+    // simulate first click
     useEffect(() => {
         if (publicationBtnRef.current) {
             publicationBtnRef.current.click();
@@ -18,8 +20,8 @@ export default function PublicationOuter({ publicationButtons }) {
     }
 
     return (
-        <>
-            <div className="buttonContainer">
+        <div className='publications'>
+            <div className="publication__buttons outer-buttons">
                 {
                     publicationButtons.map((publicationButton, index) => {
                         return <button
@@ -27,8 +29,7 @@ export default function PublicationOuter({ publicationButtons }) {
                             onClick={() => handleClick(publicationButton.PublicationLink, index)}
                             data-name={publicationButton.name}
                             key={publicationButton.name}
-                            className={index === activeButtonIndex ? "publication-btn-active" : ""}
-                        >
+                            className={`pub-button outer-button ${index === activeButtonIndex ? "active" : ""}`}>
                             {publicationButton.name}
                         </button>
                     })
@@ -36,11 +37,11 @@ export default function PublicationOuter({ publicationButtons }) {
             </div>
             <div>
                 {publicationLinks.length > 0 &&
-                    < PublicationInner
+                    <PublicationInner
                         publicationLinks={publicationLinks}
                     />}
 
             </div>
-        </>
+        </div>
     )
 }

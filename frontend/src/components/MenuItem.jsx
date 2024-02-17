@@ -1,15 +1,12 @@
-import { useEffect, useState, useRef, forwardRef } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import fetchAPI from '../utils/api';
 import { RiArrowDownSLine } from '@remixicon/react';
 
-export default function MenuItem({ slug, name, toggleClick }) {
+export default function MenuItem({ slug, name, handleClick, isActive, closeMenu }) {
     const [menuChildren, setMenuChildren] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
-    // a hack to get to arrowContaineRef. fix later
-    const arrowContaineRef = useRef(null);
-    const dropdownRef = useRef(null);
 
     const fetchMenuChildren = async (slug) => {
         try {
@@ -33,36 +30,26 @@ export default function MenuItem({ slug, name, toggleClick }) {
         fetchMenuChildren(slug);
     }, [slug]);
 
-    const showMenu = () => {
-        if (!dropdownRef.current || !arrowContaineRef.current) return;
-        dropdownRef.current.classList.toggle('active');
-        arrowContaineRef.current.querySelector('.dropdown__arrow').classList.toggle('active');
-    }
-
-
     if (error) {
         return (
             <li className="error nav-error">Something went wrong. {error}</li>
         )
     }
-
     if (loading) {
         return (
             <li className="nav nav-error">Loading...</li>
         )
     }
-
-
     return (
         <>
             {menuChildren.length === 1 ? (
                 <li>
                     <NavLink
-                        className="nav__link"
+                        className="nav__link single"
                         data-slug={menuChildren[0]?.page?.data?.attributes?.slug || ''}
                         to={menuChildren[0]?.page?.data?.attributes?.slug || ''}
                         key={menuChildren[0]?.page?.data?.attributes?.slug || ''}
-                        onClick={toggleClick}>
+                        onClick={closeMenu}>
                         {name}
                     </NavLink>
                 </li>
@@ -71,16 +58,15 @@ export default function MenuItem({ slug, name, toggleClick }) {
                     className='dropdown__item'
                 >
                     <div
+                        onClick={(e)=>handleClick(e)}
                         className="nav__link"
                         data-slug={slug}
-                        key={slug}
-                        onClick={showMenu}
-                        ref={arrowContaineRef}>
+                        key={slug}>
                         {name}
-                        <RiArrowDownSLine className='dropdown__arrow' />
+                        <RiArrowDownSLine className={`dropdown__arrow ${isActive ? 'active' : ''}`} />
                     </div>
 
-                    <ul className='dropdown__menu' ref={dropdownRef}>
+                    <ul className={`dropdown__menu ${isActive ? 'active' : ''}`} >
                         {menuChildren.map((child) => {
                             const childName = child.name;
                             const childSlug = child?.page?.data?.attributes?.slug || '';
@@ -92,7 +78,7 @@ export default function MenuItem({ slug, name, toggleClick }) {
                                         className="dropdown__link"
                                         data-slug={childSlug}
                                         to={childSlug}
-                                        onClick={toggleClick}>
+                                        onClick={closeMenu}>
                                         {childName}
                                     </NavLink>
                                 </li>

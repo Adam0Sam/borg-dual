@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import RichText from './RichText';
+import RichText from '../rich-text/RichText';
 
 export default function PublicationInner({ publicationLinks }) {
     const [publicationContent, setPublicationContent] = useState([]);
@@ -19,22 +19,20 @@ export default function PublicationInner({ publicationLinks }) {
 
     return (
         <>
-            <div className="buttonContainer">
+            <div className={`publication__buttons inner-buttons ${publicationLinks.length > 1 ? "visible" : ""} `}>
                 {publicationLinks.map((link, index) =>
                     <button
                         ref={index === 0 ? buttonRef : null}
                         onClick={() => handleClick(link.publication.data.attributes.RichText, index)}
                         key={link.name}
-                        className={`
-                        publication-content-button 
-                        ${publicationLinks.length > 1 ? "visible" : ""} 
-                        ${index === activeButtonIndex ? "publication-btn-active" : ""}
-                        `}
-                    >{link.name}
+                        className={`pub-button inner-button ${index === activeButtonIndex ? "active" : ""}`}>
+                        {link.name}
                     </button>
                 )}
             </div>
-            <RichText text={publicationContent} />
+            <div className='rich-container'>
+                <RichText text={publicationContent} />
+            </div>
         </>
     )
 

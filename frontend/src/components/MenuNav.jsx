@@ -8,6 +8,7 @@ import { RiMenuLine, RiCloseLine } from '@remixicon/react';
 
 export default function MenuNav() {
     const [menuItems, setMenuItems] = useState([]);
+    const [activeItem, setActiveItem] = useState('');
     const navMenu = useRef(null);
     const navToggle = useRef(null);
 
@@ -23,6 +24,10 @@ export default function MenuNav() {
     const handleToggleClick = (e) => {  
         navMenu.current.classList.toggle('show-menu');
         navToggle.current.classList.toggle('show-icon');
+    }
+
+    const handleActiveItem = (e) => {
+        setActiveItem(e.target.dataset.slug);
     }
 
     return (
@@ -48,13 +53,14 @@ export default function MenuNav() {
                 <div className='nav__menu' id='nav-menu' ref={navMenu}>
                     <ul className='nav__list'>
                         {menuItems.map((item) => {
-                            console.log("item: ", item.attributes.slug);
                             return (
                                 <MenuItem
                                     key={item.attributes.slug}
                                     slug={item.attributes.slug}
                                     name={item.attributes.name}
-                                    toggleClick={handleToggleClick}
+                                    isActive={activeItem === item.attributes.slug}
+                                    handleClick={(e)=>handleActiveItem(e)}
+                                    closeMenu={handleToggleClick}
                                 />
                             )
                         })}

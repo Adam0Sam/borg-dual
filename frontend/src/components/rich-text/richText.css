@@ -1,0 +1,15 @@
+.rich-wrapper{  
+    text-align: justify;
+    flex-grow: 1;
+    width: min(40rem, 100%);
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--black-color-lighten);
+}
+.rich-wrapper img{
+    display: block;
+    max-height: 200px;
+    margin: 2rem auto;
+}
+.rich-wrapper li{
+    list-style:disc;
+}

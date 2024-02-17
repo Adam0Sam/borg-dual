@@ -1,0 +1,52 @@
+.tasks{
+    margin-top: 3rem;
+    padding: 0 10rem;
+}
+
+.task{
+    margin-top: 2rem;
+}
+
+.task-content{
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+    border-radius: 1rem;
+    background-color: #e5e4e4;
+}
+.task-content.visible{
+    padding: 2rem 1rem;
+    max-height: 100rem;
+}
+
+.task__buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 2rem;
+}
+
+.task__info{
+    text-align: center;
+}
+
+.task-button{
+    height: 8rem;
+    padding: 1rem;
+    margin: 1rem 0;
+    border: 1px solid var(--black-color-light);
+    border-radius: 1rem;
+    cursor: pointer;
+}
+.task-button img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.task-button:hover{
+    background-color: #f4f4f4;
+}
+.task-button.active{
+    background-color: #f4f4f4;
+}

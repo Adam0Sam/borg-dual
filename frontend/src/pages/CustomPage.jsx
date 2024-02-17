@@ -2,13 +2,13 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import fetchAPI from '../utils/api';
 // Custom components
-import RichText from "../components/RichText";
-import PublicationOuter from "../components/PublicationOuter";
-import Events from "../components/Events";
-import Logos from "../components/Logos";
+import RichText from "../components/rich-text/RichText";
+import PublicationOuter from "../components/publications/PublicationOuter";
+// import Events from "../components/wip/Events";
+import Logos from "../components/logos/Logos";
 import Countries from "../components/countries/Countries";
-import Tasks from "../components/Tasks";
-import ImageGalleries from "../components/ImageGalleries";
+import Tasks from "../components/tasks/Tasks";
+import ImageGallery from "../components/image-gallery/ImageGallery";
 
 export default function CustomPage() {
     const params = useParams();
@@ -28,7 +28,7 @@ export default function CustomPage() {
         }
     }
 
-    useEffect(() => {   
+    useEffect(() => {
         fetchContent();
         window.scrollTo(0, 0);
     }, [postSlug])
@@ -54,14 +54,19 @@ export default function CustomPage() {
 
     return (
         <>
-            <h1>{content.name}</h1>
-            {isIncluded("RichText", content) && <RichText text={modifyArray(content.RichText, postSlug)} />}
+            {isIncluded("RichText", content) &&
+                (
+                    <div className="rich-container m-top">
+                        <RichText text={modifyArray(content.RichText, postSlug)} title={content.name} />
+                    </div>
+                )
+            }
             {isIncluded("Countries", content) && <Countries countries={content.Countries} />}
             {isIncluded("Logos", content) && <Logos logos={content.Logos} />}
-            {isIncluded("Events", content) && <Events events={modifyArray(content.Events, postSlug)} />}
+            {/* {isIncluded("Events", content) && <Events events={modifyArray(content.Events, postSlug)} />} */}
             {isIncluded("PublicationButtons", content) && <PublicationOuter publicationButtons={content.PublicationButtons} />}
-            {isIncluded("TaskLinks", content) && <Tasks taskLinks={content.TaskLinks} type="page" />}
-            {isIncluded("ImageGalleries", content) && <ImageGalleries imageGalleries={content.ImageGalleries}/>}
+            {isIncluded("TaskLinks", content) && <Tasks taskLinks={content.TaskLinks} />}
+            {isIncluded("ImageGalleries", content) && <ImageGallery imageGalleries={content.ImageGalleries} />}
         </>
     )
 }

@@ -1,7 +1,7 @@
 // TODO: Create API tokens
 export function getStrapiURL(path = '') {
     return `${
-        'https://borg.licejus.lt'
+        'http://localhost:1337'
     }${path}`;
 }
 
@@ -14,7 +14,6 @@ export default async function fetchAPI(path, options = {}) {
             },
             ...options,
         };
-        console.log("myoptions: ", mergedOptions);
         const res = await fetch(getStrapiURL(path), mergedOptions);
         const data = await res.json();
         return data;

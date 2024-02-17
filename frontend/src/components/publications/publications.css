@@ -1,0 +1,31 @@
+.publications{
+    padding: 0 10rem;
+}
+.publication__buttons{
+    justify-content: space-around;
+    margin-bottom: 2rem;
+}
+.publication__buttons.outer-buttons{
+    margin-top: 2rem;
+    display: flex;
+}
+.publication__buttons.inner-buttons{
+    display: none;
+}
+.publication__buttons.inner-buttons.visible{
+    display: flex;
+}
+.pub-button{
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--electric-blue-color);
+}
+.pub-button:hover,
+.pub-button:focus{
+    background-color: var(--electric-blue-color-dark);
+}
+.pub-button.active{
+    background-color: var(--electric-blue-color-dark);
+}
+

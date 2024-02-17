@@ -1,0 +1,33 @@
+.gallery-container{
+    padding: 0 10rem;
+}
+
+.gallery{
+    padding: 1rem 0 3rem 0;
+    border-bottom: 1px solid var(--black-color);
+}
+
+.gallery__images{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.gallery__info{
+    margin-bottom: 2rem;
+}
+
+.gallery-img{
+    height: 7rem;
+    border-radius: 10px;
+    border: 1px solid var(--black-color);
+    overflow: hidden;
+    padding: 0.25rem;
+}
+
+.gallery-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+}

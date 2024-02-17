@@ -6,7 +6,7 @@ export default function Countries({ countries }) {
         <div className='grid-container flag-container'>
             {countries.map((country) => {
                 return (
-                    <div className='country'>
+                    <div className='country' key={country.id}>
                         <div className='country__flag'>
                             <a href={country.url} target="_blank" rel="noreferrer">
                                 <img className='flag-img'
