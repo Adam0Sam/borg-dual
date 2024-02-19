@@ -407,6 +407,7 @@ a {
     justify-content: center;
     align-items: center;
     gap: 4rem;
+    overflow-x: scroll;
 }
 
 /* ========== UTILITIES ========== */
@@ -425,7 +426,7 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 0 10rem;
+    padding: 0 min(10%, 10rem);
     gap: 3rem;
 }
 

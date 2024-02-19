@@ -4,6 +4,7 @@
     align-items: stretch;
     gap: 8rem;
     overflow: auto;
+    overflow-x: scroll;
 }
 
 .info-column {
