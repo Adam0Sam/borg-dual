@@ -8,7 +8,7 @@ export default function Events({ events }) {
                     return (
                         <RichText
                             text={event.RichText}
-                            subTitle={event.year}
+                            title={event.year}
                         />
                     )
                 })

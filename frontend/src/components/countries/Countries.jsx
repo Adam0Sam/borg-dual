@@ -9,10 +9,13 @@ export default function Countries({ countries }) {
                     <div className='country' key={country.id}>
                         <div className='country__flag'>
                             <a href={country.url} target="_blank" rel="noreferrer">
+				{
+				country?.flag?.data?.attributes ? 
                                 <img className='flag-img'
                                     src={getStrapiURL(country.flag.data.attributes?.url)}
                                     alt={`${country.name}`}>
-                                </img>
+                                </img> : <p>no image</p>
+				}
                             </a>
                         </div>
                         <div className='country__info'>
