@@ -1,9 +1,12 @@
 .publications{
-    padding: 0 10rem;
+    /* padding: 0 10rem; */
 }
 .publication__buttons{
     justify-content: space-around;
-    margin-bottom: 2rem;
+    gap: 1.5rem;
+    margin: 2rem;
+    margin-top: 0;
+    
 }
 .publication__buttons.outer-buttons{
     margin-top: 2rem;
