@@ -22,16 +22,21 @@ export default function CustomPage() {
             const data = await fetchAPI(`/api/pages/${postSlug}`);
             setContent(data.data.attributes);
             setLoading(false);
+            return data;
         }
         catch (err) {
             setError(err.status + ": " + err.statusText);
         }
     }
-
+    
+    
     useEffect(() => {
-        fetchContent();
-        window.scrollTo(0, 0);
-    }, [postSlug])
+        fetchContent().then(() => {
+            setTimeout(() => {
+                window.scrollTo({ top: 0, behavior: 'smooth'});
+            }, 1);
+        })
+    }, [postSlug]);
 
 
     const isIncluded = (component, content) => {
@@ -63,7 +68,7 @@ export default function CustomPage() {
             }
             {isIncluded("Countries", content) && <Countries countries={content.Countries} />}
             {isIncluded("Logos", content) && <Logos logos={content.Logos} />}
-            { isIncluded("Events", content) && <Events events={modifyArray(content.Events, postSlug)} /> }
+            {isIncluded("Events", content) && <Events events={modifyArray(content.Events, postSlug)} />}
             {isIncluded("PublicationButtons", content) && <PublicationOuter publicationButtons={content.PublicationButtons} />}
             {isIncluded("TaskLinks", content) && <Tasks taskLinks={content.TaskLinks} />}
             {isIncluded("ImageGalleries", content) && <ImageGallery imageGalleries={content.ImageGalleries} />}
