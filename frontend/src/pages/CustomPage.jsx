@@ -4,7 +4,7 @@ import fetchAPI from '../utils/api';
 // Custom components
 import RichText from "../components/rich-text/RichText";
 import PublicationOuter from "../components/publications/PublicationOuter";
-// import Events from "../components/wip/Events";
+import Events from "../components/wip/Events";
 import Logos from "../components/logos/Logos";
 import Countries from "../components/countries/Countries";
 import Tasks from "../components/tasks/Tasks";
@@ -63,7 +63,7 @@ export default function CustomPage() {
             }
             {isIncluded("Countries", content) && <Countries countries={content.Countries} />}
             {isIncluded("Logos", content) && <Logos logos={content.Logos} />}
-            {/* {isIncluded("Events", content) && <Events events={modifyArray(content.Events, postSlug)} />} */}
+            { isIncluded("Events", content) && <Events events={modifyArray(content.Events, postSlug)} /> }
             {isIncluded("PublicationButtons", content) && <PublicationOuter publicationButtons={content.PublicationButtons} />}
             {isIncluded("TaskLinks", content) && <Tasks taskLinks={content.TaskLinks} />}
             {isIncluded("ImageGalleries", content) && <ImageGallery imageGalleries={content.ImageGalleries} />}
