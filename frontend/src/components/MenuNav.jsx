@@ -27,6 +27,10 @@ export default function MenuNav() {
     }
 
     const handleActiveItem = (e) => {
+        if(e.target.dataset.slug === activeItem){
+            setActiveItem('');
+            return;
+        }
         setActiveItem(e.target.dataset.slug);
     }
 
