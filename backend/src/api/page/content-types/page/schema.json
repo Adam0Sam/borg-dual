@@ -59,6 +59,18 @@
       "components": [
         "gallery.image-gallery"
       ]
+    },
+    "PageContent": {
+      "type": "dynamiczone",
+      "components": [
+        "icon.country",
+        "icon.logo",
+        "event.event",
+        "task.task-link",
+        "gallery.image-gallery",
+        "publication.publication-button",
+        "page.rich-text"
+      ]
     }
   }
 }
