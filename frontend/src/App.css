@@ -426,8 +426,7 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* prev: 0 min(10%, 10rem); */
-    padding: 0 min(10%, 10rem);
+    /* padding: 0 min(10%, 10rem); */
     gap: 3rem;
 }
 
@@ -441,4 +440,8 @@ a {
     border-top: 1px solid var(--black-color);
     padding: 2rem 0;
     text-align: center;
+}
+
+.page-container{
+    padding: 0 min(10%, 10rem);
 }

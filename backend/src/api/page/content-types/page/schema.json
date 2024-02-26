@@ -24,42 +24,6 @@
       "repeatable": true,
       "component": "page.rich-text"
     },
-    "Countries": {
-      "type": "dynamiczone",
-      "components": [
-        "icon.country"
-      ]
-    },
-    "Logos": {
-      "type": "dynamiczone",
-      "components": [
-        "icon.logo"
-      ]
-    },
-    "Events": {
-      "type": "dynamiczone",
-      "components": [
-        "event.event"
-      ]
-    },
-    "PublicationButtons": {
-      "type": "dynamiczone",
-      "components": [
-        "publication.publication-button"
-      ]
-    },
-    "TaskLinks": {
-      "type": "dynamiczone",
-      "components": [
-        "task.task-link"
-      ]
-    },
-    "ImageGalleries": {
-      "type": "dynamiczone",
-      "components": [
-        "gallery.image-gallery"
-      ]
-    },
     "PageContent": {
       "type": "dynamiczone",
       "components": [

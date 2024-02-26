@@ -111,8 +111,7 @@ export default function CustomPage() {
     }
 
     return (
-        <>
-            <p>oops</p>
+        <div className='page-container'>
             {page.RichText.length > 0 &&
                 (
                     <div className="rich-container m-top">
@@ -131,6 +130,6 @@ export default function CustomPage() {
             {isIncluded("PublicationButtons", content) && <PublicationOuter publicationButtons={content.PublicationButtons} />}
             {isIncluded("TaskLinks", content) && <Tasks taskLinks={content.TaskLinks} />}
             {isIncluded("ImageGalleries", content) && <ImageGallery imageGalleries={content.ImageGalleries} />} */}
-        </>
+        </div>
     )
 }

@@ -1,10 +1,11 @@
 .info-row {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: stretch;
     gap: 8rem;
     overflow: auto;
     overflow-x: scroll;
+    padding: 0 min(10%, 10rem);
 }
 
 .info-column {
