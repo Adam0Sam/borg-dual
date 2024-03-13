@@ -3,6 +3,8 @@ import CustomBlocksRenderer from "../CustomBlocksRenderer";
 import './richText.css';
 
 const sectionedPages = ['news'];
+const SYMBOLS_TO_REMOVE = ['"', '“'];
+
 
 export default function RichText({ text, title, currentSlug }) {
 
@@ -28,7 +30,7 @@ export default function RichText({ text, title, currentSlug }) {
             {text.map((element) => {
                 if (hasSections) {
                     const sectionTitle = element?.TextInstance[0]?.children[0]?.text;
-                    const formattedTitle = sectionTitle?.replace(/\s/g, '-');
+                    const formattedTitle = sectionTitle?.replace(/\s/g, '-').replace(/["“”]/g, '');
                     return (
                         <section className={`rich-wrapper id-${element.id}`} id={formattedTitle || element.id} key={element.id}>
                             <CustomBlocksRenderer
