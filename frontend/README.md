@@ -2,7 +2,7 @@
 
 
 > Page templates (High Priority)
-- Can you [insert table](http://borg.licejus.lt/community.html](https://www.bebras.org/structure.html) in RichText?
+- Can you [insert table](http://bebras.org/community.html](https://www.bebras.org/structure.html) in RichText?
 
 > Website and code improvements (Medium priority)
 - Optimize content loading by specifying `populate` parameter
