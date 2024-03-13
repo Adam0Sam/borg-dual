@@ -14,3 +14,9 @@
 .rich-wrapper li{
     list-style:disc;
 }
+.rich-wrapper.highlight{
+    border: 2px solid var(--electric-blue-color-light);
+    padding: 2rem;
+    border-radius: 5px;
+    margin: 1rem 0;
+}

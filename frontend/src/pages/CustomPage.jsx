@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import fetchAPI from '../utils/api';
 // Custom components
 import RichText from "../components/rich-text/RichText";
@@ -10,8 +10,6 @@ import Countries from "../components/countries/Countries";
 import Tasks from "../components/tasks/Tasks";
 import ImageGallery from "../components/image-gallery/ImageGallery";
 import LodgeExample from "../components/lodge/LodgeExample";
-
-const sectionedPages = ['news'];
 
 export default function CustomPage() {
     const params = useParams();
@@ -58,7 +56,7 @@ export default function CustomPage() {
         return constructedComponents;
     }
 
-    const fetchContent = async () => {
+    const fetchContent = useCallback(async () => {
         try {
             console.log("fetching");
             const data = await fetchAPI(`/api/pages/${postSlug}`);
@@ -73,19 +71,20 @@ export default function CustomPage() {
             console.log('error: ', err);
             setError(err.status + ": " + err.statusText);
         }
-    }
+    }, [postSlug])
 
 
     useEffect(() => {
         fetchContent().then((data) => {
-            setTimeout(() => {
+            // if no hash is present, then scroll to page top
+            if(!window.location.hash){
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                if(data?.PageContent){
-                    parsePageContent(data.PageContent);
-                }
-            }, 1)
+            }
+            if (data?.PageContent) {
+                parsePageContent(data.PageContent);
+            }
         })
-    }, [postSlug]);
+    }, [fetchContent]);
 
     const modifyArray = (textArray, type) => {
         const typeToReverse = ["events", "news"];
@@ -95,7 +94,7 @@ export default function CustomPage() {
         return textArray;
     }
 
-    if(postSlug==='bebraslodge1'){
+    if (postSlug === 'bebraslodge1') {
         return <LodgeExample />
     }
     if (error) return <h1 className="error">{error}</h1>
@@ -104,7 +103,7 @@ export default function CustomPage() {
     const PageComponent = ({ component }) => {
         switch (component.type) {
             case "rich-text":
-                return <RichText isSectioned={sectionedPages.includes(postSlug)} text={component.content} />;
+                return <RichText currentSlug={postSlug} text={component.content} />;
             case "publication-button":
                 return <PublicationOuter publicationButtons={component.content} />;
             case "event":
@@ -128,7 +127,7 @@ export default function CustomPage() {
             {page.RichText.length > 0 &&
                 (
                     <div className="rich-container m-top">
-                        <RichText isSectioned={sectionedPages.includes(postSlug)} text={modifyArray(page.RichText, postSlug)} title={page.name} />
+                        <RichText currentSlug={postSlug} text={modifyArray(page.RichText, postSlug)} title={page.name} />
                     </div>
                 )
             }

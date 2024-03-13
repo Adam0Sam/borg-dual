@@ -26,9 +26,9 @@
 }
 .pub-button:hover,
 .pub-button:focus{
-    background-color: var(--electric-blue-color-dark);
+    background-color: var(--neon-green-color);
 }
 .pub-button.active{
-    background-color: var(--electric-blue-color-dark);
+    background-color: var(--neon-green-color);
 }
 
