@@ -1,6 +1,9 @@
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import { getStrapiURL } from '../utils/api';
 
+const BASE_URL = 'bebras.org';
+const ALT_BASE_URL = 'borg.licejus.lt';
+
 export default function CustomBlocksRenderer({ content, customBlocks = {} }) {
     const renderParagraph = (children) => {
         if (children.length === 0 || (children.length === 1 && children[0].props.text.length === 0)) {
@@ -23,6 +26,14 @@ export default function CustomBlocksRenderer({ content, customBlocks = {} }) {
             blocks={{
                 paragraph: ({ children }) => renderParagraph(children),
                 image: (props) => renderImage(props),
+                link: ({ url, children}) => {
+                    const newUrl = new URL(url);
+                    if(newUrl.hostname === ALT_BASE_URL){
+                        newUrl.hostname = BASE_URL;
+                        url = newUrl.toString();
+                    }
+                    return <a href={url}>{children}</a>;
+                },
                 ...customBlocks
             }}
         />

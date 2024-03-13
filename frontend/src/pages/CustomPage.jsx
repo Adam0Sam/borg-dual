@@ -9,6 +9,7 @@ import Logos from "../components/logos/Logos";
 import Countries from "../components/countries/Countries";
 import Tasks from "../components/tasks/Tasks";
 import ImageGallery from "../components/image-gallery/ImageGallery";
+import LodgeExample from "../components/lodge/LodgeExample";
 
 export default function CustomPage() {
     const params = useParams();
@@ -57,12 +58,17 @@ export default function CustomPage() {
 
     const fetchContent = async () => {
         try {
+            console.log("fetching");
             const data = await fetchAPI(`/api/pages/${postSlug}`);
+            if (!data || !data.data || !data.data.attributes) {
+                throw new Error("Invalid data received");
+            }
             setPage(data.data.attributes);
             setLoading(false);
             return data.data.attributes;
         }
         catch (err) {
+            console.log('error: ', err);
             setError(err.status + ": " + err.statusText);
         }
     }
@@ -72,8 +78,10 @@ export default function CustomPage() {
         fetchContent().then((data) => {
             setTimeout(() => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                parsePageContent(data.PageContent);
-            }, 1);
+                if(data?.PageContent){
+                    parsePageContent(data.PageContent);
+                }
+            }, 1)
         })
     }, [postSlug]);
 
@@ -85,8 +93,11 @@ export default function CustomPage() {
         return textArray;
     }
 
-    if (loading) return <h1>Loading....</h1>
+    if(postSlug==='bebraslodge1'){
+        return <LodgeExample />
+    }
     if (error) return <h1 className="error">{error}</h1>
+    if (loading) return <h1>Loading....</h1>
 
     const PageComponent = ({ component }) => {
         console.log(component);
@@ -112,7 +123,7 @@ export default function CustomPage() {
 
     return (
         <>
-            <p>oops</p>
+
             {page.RichText.length > 0 &&
                 (
                     <div className="rich-container m-top">
