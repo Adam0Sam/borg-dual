@@ -2,7 +2,7 @@ import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import { getStrapiURL } from '../utils/api';
 
 const BASE_URL = 'bebras.org';
-const ALT_BASE_URL = 'bebras.org';
+const ALT_BASE_URL = 'borg.licejus.lt';
 
 export default function CustomBlocksRenderer({ content, customBlocks = {} }) {
     const renderParagraph = (children) => {

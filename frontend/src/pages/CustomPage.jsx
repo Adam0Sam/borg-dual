@@ -11,6 +11,8 @@ import Tasks from "../components/tasks/Tasks";
 import ImageGallery from "../components/image-gallery/ImageGallery";
 import LodgeExample from "../components/lodge/LodgeExample";
 
+const sectionedPages = ['news'];
+
 export default function CustomPage() {
     const params = useParams();
     const postSlug = params.slug;
@@ -100,10 +102,9 @@ export default function CustomPage() {
     if (loading) return <h1>Loading....</h1>
 
     const PageComponent = ({ component }) => {
-        console.log(component);
         switch (component.type) {
             case "rich-text":
-                return <RichText text={component.content} />;
+                return <RichText isSectioned={sectionedPages.includes(postSlug)} text={component.content} />;
             case "publication-button":
                 return <PublicationOuter publicationButtons={component.content} />;
             case "event":
@@ -127,7 +128,7 @@ export default function CustomPage() {
             {page.RichText.length > 0 &&
                 (
                     <div className="rich-container m-top">
-                        <RichText text={modifyArray(page.RichText, postSlug)} title={page.name} />
+                        <RichText isSectioned={sectionedPages.includes(postSlug)} text={modifyArray(page.RichText, postSlug)} title={page.name} />
                     </div>
                 )
             }
