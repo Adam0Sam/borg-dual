@@ -8,16 +8,25 @@ import TaskRow from '../components/TaskRow';
 import LoadingWheel from '../components/wheel/LoadingWheel';
 import Modal from '../components/modal/Modal';
 
+/**
+ * Renders the Home page component.
+ * @returns {JSX.Element} The rendered Home page component.
+ */
 export default function Home() {
     const [content, setContent] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
+
+    /**
+     * Fetches content from the API and returns the attributes data.
+     * @returns {Promise<Object>} The attributes data.
+     */
     const fetchContent = async () => {
         try {
             const data = await fetchAPI('/api/home-page?populate=deep');
-            setContent(data.data.attributes);
             setLoading(false);
+            return data.data.attributes;
         }
         catch (err) {
             setError(err.status + ": " + err.statusText);
@@ -26,7 +35,9 @@ export default function Home() {
     }
 
     useEffect(() => {
-        fetchContent();
+        fetchContent().then((data) => {
+            setContent(data);
+        })
     }, [])
 
     let returnContent = null;

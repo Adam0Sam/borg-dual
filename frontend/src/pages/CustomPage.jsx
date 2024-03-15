@@ -9,139 +9,162 @@ import Logos from "../components/logos/Logos";
 import Countries from "../components/countries/Countries";
 import Tasks from "../components/tasks/Tasks";
 import ImageGallery from "../components/image-gallery/ImageGallery";
-import LodgeExample from "../components/lodge/LodgeExample";
 
-export default function CustomPage() {
-    const params = useParams();
-    const postSlug = params.slug;
-    const [page, setPage] = useState(null);
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
+import LoadingWheel from "../components/wheel/LoadingWheel";
+import Modal from "../components/modal/Modal";
 
-    const parsePageContent = (pageContent) => {
+/**
+ * Renders a page component based on its type.
+ *
+ * @param {Object} props - The component props.
+ * @param {Object} props.component - The component object.
+ * @param {string} props.postSlug - The post slug.
+ * @returns {JSX.Element|null} The rendered page component.
+ */
+const PageComponent = ({ component, postSlug }) => {
+    switch (component.type) {
+        case "rich-text":
+            return <RichText currentSlug={postSlug} text={component.content} />;
+        case "publication-button":
+            return <PublicationOuter publicationButtons={component.content} />;
+        case "event":
+            return <Events events={component.content} />;
+        case "logo":
+            return <Logos logos={component.content} />;
+        case "country":
+            return <Countries countries={component.content} />;
+        case "task-link":
+            return <Tasks taskLinks={component.content} />;
+        case "image-gallery":
+            return <ImageGallery imageGalleries={component.content} />;
+        default:
+            return null;
+    }
+}
 
-        if (!pageContent) return;
+/**
+ * Modifies an array based on the given type.
+ * If the type is "events" or "news", the array will be reversed.
+ * Otherwise, the array will remain unchanged.
+ *
+ * @param {Array} textArray - The array to be modified.
+ * @param {string} type - The type of modification to be applied.
+ * @returns {Array} - The modified array.
+ */
+const modifyArray = (textArray, type) => {
+    const typeToReverse = ["events", "news"];
+    if (typeToReverse.includes(type)) {
+        return [...textArray].reverse();
+    }
+    return textArray;
+}
 
-        /** 
-         Array representing constructed components.
-         @type {Array.<{ type: number, content: Array<object> }>}
-        */
+/**
+ * Parses the page content and constructs an array of components.
+ * @param {Array<object>} pageContent - The page content to parse.
+ * @returns {Array.<{ type: number, content: Array<object> }>} The constructed components.
+ */
+const parsePageContent = (pageContent) => {
+    if (!pageContent) return;
 
-        const constructedComponents = [];
+    const constructedComponents = [];
+    let prevComponentType = null;
 
-        let prevComponentType = null;
-        for (let i = 0; i < pageContent.length; i++) {
-            if (!prevComponentType) {
-                prevComponentType = (pageContent[i].__component).split('.')[1];
-                constructedComponents.push({
-                    type: prevComponentType,
-                    content: [pageContent[i]]
-                });
-                continue;
-            }
-
-            const currComponentType = (pageContent[i].__component).split('.')[1];
-
-            if (currComponentType === prevComponentType) {
-                constructedComponents[constructedComponents.length - 1].content.push(pageContent[i]);
-                continue;
-            }
-
-            prevComponentType = currComponentType;
+    for (let i = 0; i < pageContent.length; i++) {
+        if (!prevComponentType) {
+            prevComponentType = (pageContent[i].__component).split('.')[1];
             constructedComponents.push({
                 type: prevComponentType,
                 content: [pageContent[i]]
             });
+            continue;
         }
-        return constructedComponents;
+
+        const currComponentType = (pageContent[i].__component).split('.')[1];
+
+        if (currComponentType === prevComponentType) {
+            constructedComponents[constructedComponents.length - 1].content.push(pageContent[i]);
+            continue;
+        }
+
+        prevComponentType = currComponentType;
+        constructedComponents.push({
+            type: prevComponentType,
+            content: [pageContent[i]]
+        });
     }
 
+    return constructedComponents;
+}
+
+/**
+ * CustomPage component.
+ * Renders a custom page with dynamic content.
+ * @returns {JSX.Element} The rendered CustomPage component.
+ */
+export default function CustomPage() {
+    const params = useParams();
+    const postSlug = params.slug;
+
+    const [pageContent, setPageContent] = useState(null);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    /**
+     * Fetches the page content from the API.
+     * @returns {Promise<object>} A promise that resolves to the fetched page content.
+     */
     const fetchContent = useCallback(async () => {
         try {
-            console.log("fetching");
             const data = await fetchAPI(`/api/pages/${postSlug}`);
             if (!data || !data.data || !data.data.attributes) {
                 throw new Error("Invalid data received");
             }
-            setPage(data.data.attributes);
             setLoading(false);
             return data.data.attributes;
         }
         catch (err) {
-            console.log('error: ', err);
             setError(err.status + ": " + err.statusText);
+            setLoading(false);
         }
-    }, [postSlug])
-
+    }, [postSlug]);
 
     useEffect(() => {
         fetchContent().then((data) => {
             // if no hash is present, then scroll to page top
-            if(!window.location.hash){
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (!window.location.hash) {
+                // why does scroll-behavior: smooth result in the window not scrolling to the top?
+                window.scrollTo({ top: 0 });
             }
-            if (data?.PageContent) {
-                parsePageContent(data.PageContent);
-            }
+            setPageContent(data);
         })
     }, [fetchContent]);
 
-    const modifyArray = (textArray, type) => {
-        const typeToReverse = ["events", "news"];
-        if (typeToReverse.includes(type)) {
-            return [...textArray].reverse();
-        }
-        return textArray;
-    }
-
-    if (postSlug === 'bebraslodge1') {
-        return <LodgeExample />
-    }
-    if (error) return <h1 className="error">{error}</h1>
-    if (loading) return <h1>Loading....</h1>
-
-    const PageComponent = ({ component }) => {
-        switch (component.type) {
-            case "rich-text":
-                return <RichText currentSlug={postSlug} text={component.content} />;
-            case "publication-button":
-                return <PublicationOuter publicationButtons={component.content} />;
-            case "event":
-                return <Events events={component.content} />;
-            case "logo":
-                return <Logos logos={component.content} />;
-            case "country":
-                return <Countries countries={component.content} />;
-            case "task-link":
-                return <Tasks taskLinks={component.content} />;
-            case "image-gallery":
-                return <ImageGallery imageGalleries={component.content} />;
-            default:
-                return null;
-        }
-    }
+    if (loading) return (
+        <Modal>
+            <LoadingWheel />
+        </Modal>
+    )
+    else if (error) return (
+        <Modal>
+            <h1 className='error: '>{error}</h1>
+        </Modal>
+    )
 
     return (
         <>
-
-            {page.RichText.length > 0 &&
+            {pageContent.RichText.length > 0 &&
                 (
                     <div className="rich-container m-top">
-                        <RichText currentSlug={postSlug} text={modifyArray(page.RichText, postSlug)} title={page.name} />
+                        <RichText currentSlug={postSlug} text={modifyArray(pageContent.RichText, postSlug)} title={pageContent.name} />
                     </div>
                 )
             }
             {
-                parsePageContent(page.PageContent).map((component) => {
-                    return <PageComponent component={component} />
+                parsePageContent(pageContent.PageContent).map((component) => {
+                    return <PageComponent component={component} postSlug={postSlug} />
                 })
             }
-            {/* {isIncluded("Countries", content) && <Countries countries={content.Countries} />}
-            {isIncluded("Logos", content) && <Logos logos={content.Logos} />}
-            {isIncluded("Events", content) && <Events events={modifyArray(content.Events, postSlug)} />}
-            {isIncluded("PublicationButtons", content) && <PublicationOuter publicationButtons={content.PublicationButtons} />}
-            {isIncluded("TaskLinks", content) && <Tasks taskLinks={content.TaskLinks} />}
-            {isIncluded("ImageGalleries", content) && <ImageGallery imageGalleries={content.ImageGalleries} />} */}
         </>
     )
 }
