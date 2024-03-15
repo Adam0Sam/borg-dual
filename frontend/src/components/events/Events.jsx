@@ -1,8 +1,13 @@
 import RichText from "../rich-text/RichText"
 
+// is this component necessary or should it be merged with the RichText component?
+
 export default function Events({ events }) {
+
+    events = events.reverse();
+
     return (
-        <div>
+        <div className="rich-container m-top">
             {
                 events.map((event) => {
                     return (

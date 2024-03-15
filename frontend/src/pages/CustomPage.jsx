@@ -4,7 +4,7 @@ import fetchAPI from '../utils/api';
 // Custom components
 import RichText from "../components/rich-text/RichText";
 import PublicationOuter from "../components/publications/PublicationOuter";
-import Events from "../components/wip/Events";
+import Events from "../components/events/Events";
 import Logos from "../components/logos/Logos";
 import Countries from "../components/countries/Countries";
 import Tasks from "../components/tasks/Tasks";
@@ -54,7 +54,7 @@ const PageComponent = ({ component, postSlug }) => {
 const modifyArray = (textArray, type) => {
     const typeToReverse = ["events", "news"];
     if (typeToReverse.includes(type)) {
-        return [...textArray].reverse();
+        return textArray.reverse();
     }
     return textArray;
 }

@@ -2,10 +2,18 @@ import { useEffect, useMemo } from "react";
 import CustomBlocksRenderer from "../CustomBlocksRenderer";
 import './richText.css';
 
-const sectionedPages = ['news'];
+const sectionedPages = ['news', 'events'];
 const SYMBOLS_TO_REMOVE = ['"', '“'];
 
 
+/**
+ * Renders rich text content with optional sections and smooth scrolling to hash links.
+ * @param {Object} props - The component props.
+ * @param {Array} props.text - The array of text elements to render.
+ * @param {string} props.title - The title of the rich text.
+ * @param {string} props.currentSlug - The current slug for the page.
+ * @returns {JSX.Element} The rendered rich text component.
+ */
 export default function RichText({ text, title, currentSlug }) {
 
     const hasSections = useMemo(() => sectionedPages.includes(currentSlug), [currentSlug]);
