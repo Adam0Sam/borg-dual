@@ -5,6 +5,9 @@ import CustomBlocksRenderer from '../components/CustomBlocksRenderer';
 import InfoRow from '../components/info-row/InfoRow';
 import TaskRow from '../components/TaskRow';
 
+import LoadingWheel from '../components/wheel/LoadingWheel';
+import Modal from '../components/modal/Modal';
+
 export default function Home() {
     const [content, setContent] = useState([]);
     const [error, setError] = useState(null);
@@ -27,9 +30,28 @@ export default function Home() {
     }, [])
 
     let returnContent = null;
-    if (loading) returnContent = <h1>Loading...</h1>
-    if (error) returnContent = <h1 className='error'>{error}</h1>
-    if (!(content.Alert && content.InfoRowOne && content.InfoRowTwo)) returnContent = <h1 className='error'>Missing content</h1>
+    if (loading) {
+        returnContent =
+            (
+                <Modal openOnMount customClassNames='center'>
+                    <LoadingWheel />
+                </Modal>
+            )
+    }
+    else if (error) {
+        returnContent = (
+            <Modal openOnMount customClassNames='center'>
+                <h1 className='error'>{error}</h1>
+            </Modal>
+        )
+    }
+    else if (!(content.Alert && content.InfoRowOne && content.InfoRowTwo)) {
+        returnContent = (
+            <Modal>
+                <h1 className='error'>Missing content</h1>
+            </Modal>
+        )
+    }
     else returnContent = (
         <>
             <div className='alert-message'>
