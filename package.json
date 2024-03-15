@@ -1,0 +1,16 @@
+{
+  "name": "borg-dual",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-packages": "concurrently \"npm --prefix ./frontend install\" \"npm --prefix ./backend install\"",
+    "start": "concurrently \"npm --prefix ./frontend start\" \"npm --prefix ./backend start\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
