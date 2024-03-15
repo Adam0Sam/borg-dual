@@ -1,10 +1,12 @@
 .info-row {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: stretch;
     gap: 8rem;
     overflow: auto;
     overflow-x: scroll;
+    padding: 0 2rem;
 }
 
 .info-column {
@@ -26,3 +28,4 @@
 .info-row.row-two .info-text>h3 {
     text-align: center;
 }
+
