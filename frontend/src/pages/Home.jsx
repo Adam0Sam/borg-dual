@@ -8,7 +8,7 @@ import TaskRow from '../components/TaskRow';
 export default function Home() {
     const [content, setContent] = useState([]);
     const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const fetchContent = async () => {
         try {
@@ -18,6 +18,7 @@ export default function Home() {
         }
         catch (err) {
             setError(err.status + ": " + err.statusText);
+            setLoading(false);
         }
     }
 
