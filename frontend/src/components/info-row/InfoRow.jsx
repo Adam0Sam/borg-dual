@@ -9,7 +9,7 @@ export default function InfoRow({ infoRow, customClass }) {
         <div className={`info-row ${customClass}`}>
             {infoRow.map((info) => {
                 return (
-                    <div className='info-column'>
+                    <div className='info-column' key={info.id}>
                         <div className='info-text'>
                             <h3>{info.name}</h3>
                             <CustomBlocksRenderer content={info.TextInstance} />

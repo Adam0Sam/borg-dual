@@ -11,17 +11,17 @@ export default function TaskRow({ taskLinks }) {
                     return (
                         <NavLink
                             to="/task-examples"
-                        >
+                            key={link.id}>
                             <img
                                 className="task-block"
                                 src={getStrapiURL(coverImageUrl)}
-                            >
-
+                                alt={task.name}
+                                key={task.name}>
                             </img>
                         </NavLink>
                     )
                 })
             }
-        </div >
+        </div>
     )
 }

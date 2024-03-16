@@ -445,6 +445,11 @@ a {
     gap: 3rem;
 }
 
+.clickable {
+    cursor: pointer;
+    pointer-events: initial;
+}
+
 /* ========== TEMPORARY ========== */
 .task-block {
     margin: 1rem 0;

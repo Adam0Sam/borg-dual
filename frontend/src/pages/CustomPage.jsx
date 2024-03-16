@@ -9,9 +9,12 @@ import Logos from "../components/logos/Logos";
 import Countries from "../components/countries/Countries";
 import Tasks from "../components/tasks/Tasks";
 import ImageGallery from "../components/image-gallery/ImageGallery";
+import Carousel from "../components/carousel/Carousel";
 
 import LoadingWheel from "../components/wheel/LoadingWheel";
 import Modal from "../components/modal/Modal";
+
+import { useCarousel } from "../context/CarouselProvider";
 
 /**
  * Renders a page component based on its type.
@@ -106,6 +109,8 @@ export default function CustomPage() {
     const params = useParams();
     const postSlug = params.slug;
 
+    const { clearCarousel } = useCarousel();
+
     const [pageContent, setPageContent] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -137,8 +142,11 @@ export default function CustomPage() {
                 window.scrollTo({ top: 0 });
             }
             setPageContent(data);
+            clearCarousel();
         })
-    }, [fetchContent]);
+    }, [fetchContent, clearCarousel]);
+
+
 
     if (loading) return (
         <Modal>
@@ -161,10 +169,12 @@ export default function CustomPage() {
                 )
             }
             {
-                parsePageContent(pageContent.PageContent).map((component) => {
-                    return <PageComponent component={component} postSlug={postSlug} />
+                // very unlikely that PageContent structure will change mid-view thus index-key is a valid apporach
+                parsePageContent(pageContent.PageContent).map((component, index) => {
+                    return <PageComponent component={component} postSlug={postSlug} key={index} />
                 })
             }
+            <Carousel />
         </>
     )
 }
