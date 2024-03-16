@@ -5,8 +5,8 @@ import { useCarousel } from '../context/CarouselProvider';
 const BASE_URL = 'bebras.org';
 const ALT_BASE_URL = 'borg.licejus.lt';
 
-export default function CustomBlocksRenderer({ content, customBlocks = {} }) {
-    const { addToCarousel, getCarouselLength, openCarousel } = useCarousel();
+export default function CustomBlocksRenderer({ content, openCarouselModal, customBlocks = {} }) {
+    const { addToCarousel, getCarouselLength } = useCarousel();
 
     const renderParagraph = (children) => {
         if (children.length === 0 || (children.length === 1 && children[0].props.text.length === 0)) {
@@ -24,7 +24,7 @@ export default function CustomBlocksRenderer({ content, customBlocks = {} }) {
         addToCarousel({ url: url, alt: image.alternativeText })
         let imageId = getCarouselLength() - 1;
         return (
-            <img className={`clickable`} data-id={imageId} onClick={openCarousel} src={url} alt={image.alternativeText} />
+            <img className={`clickable`} data-id={imageId} onClick={openCarouselModal} src={url} alt={image.alternativeText} />
         );
     };
 

@@ -1,14 +1,37 @@
 import { useCarousel } from "../../context/CarouselProvider";
+import { RiArrowRightSLine, RiArrowLeftSLine } from "@remixicon/react";
+import { useState } from "react";
+import './carousel.css'
 
-export default function Carousel() {
-    const { carousel, carouselIsOpen, closeCarousel } = useCarousel();
-    if(!carouselIsOpen) return null;    
+export default function Carousel({ closeCarouselModal }) {
+    const { carousel } = useCarousel();
+    const [currentImageId, setCurrentImageId] = useState(0);
+
+    const nextImage = () => {
+        setCurrentImageId((prev) => {
+            if (prev === carousel.length - 1) return 0;
+            return prev + 1;
+        });
+    }
+
+    const prevImage = () => {
+        setCurrentImageId((prev) => {
+            if (prev === 0) return carousel.length - 1;
+            return prev - 1;
+        });
+    }
+
     return (
-        <div className="carousel">
-            <div className="carousel-content">
-                <span className="close" onClick={closeCarousel}>&times;</span>
-                <img src={carousel[0].url} alt={carousel[0].alt}></img>
+            <div className="carousel">
+                <button className="carousel-arrow l-arrow" onClick={prevImage}>
+                    <RiArrowLeftSLine />
+                </button>
+                <div className="carousel__content">
+                    <img src={carousel[currentImageId].url} alt={carousel[currentImageId].alt}></img>
+                </div>
+                <button className="carousel-arrow r-arrow" onClick={nextImage}>
+                    <RiArrowRightSLine />
+                </button>
             </div>
-        </div>
     )
 }

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import fetchAPI from '../utils/api';
 // Custom components
 import RichText from "../components/rich-text/RichText";
@@ -110,6 +110,7 @@ export default function CustomPage() {
     const postSlug = params.slug;
 
     const { clearCarousel } = useCarousel();
+    const carouselModalRef = useRef(null);
 
     const [pageContent, setPageContent] = useState(null);
     const [error, setError] = useState(null);
@@ -147,6 +148,19 @@ export default function CustomPage() {
     }, [fetchContent, clearCarousel]);
 
 
+    // prop drilling with these functions is not very good but what can I do?
+    /**
+     * Opens the carousel modal.
+     */
+    const openCarouselModal = () => {
+        carouselModalRef.current.open();
+    }
+    /**
+     * Closes the carousel modal.
+     */
+    const closeCarouselModal = () => {
+        carouselModalRef.current.close();
+    }
 
     if (loading) return (
         <Modal>
@@ -164,7 +178,7 @@ export default function CustomPage() {
             {pageContent.RichText.length > 0 &&
                 (
                     <div className="rich-container m-top">
-                        <RichText currentSlug={postSlug} text={modifyArray(pageContent.RichText, postSlug)} title={pageContent.name} />
+                        <RichText currentSlug={postSlug} text={modifyArray(pageContent.RichText, postSlug)} title={pageContent.name} openCarouselModal={openCarouselModal}/>
                     </div>
                 )
             }
@@ -174,7 +188,9 @@ export default function CustomPage() {
                     return <PageComponent component={component} postSlug={postSlug} key={index} />
                 })
             }
-            <Carousel />
+            <Modal ref={carouselModalRef}>
+                <Carousel closeCarouselModal={closeCarouselModal}/>
+            </Modal>
         </>
     )
 }
