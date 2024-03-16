@@ -44,7 +44,7 @@
     bottom: 2rem;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     --webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
 }

@@ -20,7 +20,7 @@ export default function PublicationOuter({ publicationButtons }) {
     }
 
     return (
-        <div className='publications'>
+        <div className='container publications'>
             <div className="publication__buttons outer-buttons">
                 {
                     publicationButtons.map((publicationButton, index) => {

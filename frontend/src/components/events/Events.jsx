@@ -7,7 +7,7 @@ export default function Events({ events }) {
     events = events.reverse();
 
     return (
-        <div className="rich-container m-top">
+        <div className="container rich-container m-top">
             {
                 events.map((event) => {
                     return (

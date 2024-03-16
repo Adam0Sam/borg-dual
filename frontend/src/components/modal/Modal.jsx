@@ -21,13 +21,13 @@ const Modal = forwardRef(({ children, customClassNames, openOnMount, ...props },
     const openModal = () => {
         dialogRef.current.showModal();
         setIsOpen(true);
-        // document.body.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
     }
 
     const closeModal = () => {
         dialogRef.current.close();
         setIsOpen(false);
-        // document.body.style.overflow = 'auto';
+        document.body.style.overflow = 'auto';
     }
 
     useImperativeHandle(ref, () => ({
@@ -38,6 +38,9 @@ const Modal = forwardRef(({ children, customClassNames, openOnMount, ...props },
     useEffect(() => {
         if (openOnMount) {
             openModal();
+        }
+        return () => {
+            document.body.style.overflow = 'auto';
         }
     }, [openOnMount]);
 

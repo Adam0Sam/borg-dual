@@ -1,9 +1,12 @@
 import { getStrapiURL } from "../../utils/api";
+import { useCarousel } from "../../context/CarouselProvider";
 import './gallery.css'
 
-export default function ImageGallery({ imageGalleries }) {
+export default function ImageGallery({ imageGalleries, openCarouselModal }) {
+    const { addToCarousel, getCarouselLength } = useCarousel();
+
     return (
-        <div className="gallery-container m-top">
+        <div className="container gallery-container m-top">
             {
                 imageGalleries.map((gallery) => {
                     return (
@@ -15,11 +18,15 @@ export default function ImageGallery({ imageGalleries }) {
                             <div className="gallery__images">
                                 {
                                     gallery.images.data.map((image) => {
+                                        addToCarousel({ url: getStrapiURL(image.attributes?.url), alt: image.attributes?.alternativeText })
+                                        const imageId = getCarouselLength() - 1;
                                         return (
                                             <div className="gallery-img" key={image.id}>
                                                 <img
+                                                    className="clickable"
                                                     alt={image.attributes?.alternativeText || image.attributes.name}
-                                                    src={getStrapiURL(image.attributes?.url)}>
+                                                    src={getStrapiURL(image.attributes?.url)}
+                                                    onClick={(e)=>openCarouselModal(e)}>
                                                 </img>
                                             </div>
                                         )

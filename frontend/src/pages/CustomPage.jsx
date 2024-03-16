@@ -24,7 +24,7 @@ import { useCarousel } from "../context/CarouselProvider";
  * @param {string} props.postSlug - The post slug.
  * @returns {JSX.Element|null} The rendered page component.
  */
-const PageComponent = ({ component, postSlug }) => {
+const PageComponent = ({ component, postSlug, openCarouselModal }) => {
     switch (component.type) {
         case "rich-text":
             return <RichText currentSlug={postSlug} text={component.content} />;
@@ -39,7 +39,7 @@ const PageComponent = ({ component, postSlug }) => {
         case "task-link":
             return <Tasks taskLinks={component.content} />;
         case "image-gallery":
-            return <ImageGallery imageGalleries={component.content} />;
+            return <ImageGallery imageGalleries={component.content} openCarouselModal={openCarouselModal}/>;
         default:
             return null;
     }
@@ -179,7 +179,7 @@ export default function CustomPage() {
         <>
             {pageContent.RichText.length > 0 &&
                 (
-                    <div className="rich-container m-top">
+                    <div className="container rich-container m-top">
                         <RichText currentSlug={postSlug} text={modifyArray(pageContent.RichText, postSlug)} title={pageContent.name} openCarouselModal={openCarouselModal}/>
                     </div>
                 )
@@ -187,7 +187,7 @@ export default function CustomPage() {
             {
                 // very unlikely that PageContent structure will change mid-view thus index-key is a valid apporach
                 parsePageContent(pageContent.PageContent).map((component, index) => {
-                    return <PageComponent component={component} postSlug={postSlug} key={index} />
+                    return <PageComponent component={component} postSlug={postSlug} key={index} openCarouselModal={openCarouselModal}/>
                 })
             }
             <Modal ref={carouselModalRef}>

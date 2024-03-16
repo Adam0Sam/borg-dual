@@ -24,7 +24,7 @@ export default function CustomBlocksRenderer({ content, openCarouselModal, custo
         addToCarousel({ url: url, alt: image.alternativeText })
         let imageId = getCarouselLength() - 1;
         return (
-            <img className={`clickable`} data-id={imageId} onClick={()=>openCarouselModal(imageId)} src={url} alt={image.alternativeText} />
+            <img className='clickable' data-id={imageId} onClick={()=>openCarouselModal(imageId)} src={url} alt={image.alternativeText} />
         );
     };
 

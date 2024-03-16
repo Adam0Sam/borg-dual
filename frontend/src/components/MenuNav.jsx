@@ -36,7 +36,7 @@ export default function MenuNav() {
 
     return (
         <header className='header'>
-            <nav className='nav container'>
+            <nav className='nav nav-container'>
                 <div className='nav__data'>
                     <NavLink to='/' className='nav__logo'>
                         <img className='nav__logo-img' src='/logo.png'></img>
