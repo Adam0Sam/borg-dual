@@ -111,6 +111,7 @@ export default function CustomPage() {
 
     const { clearCarousel } = useCarousel();
     const carouselModalRef = useRef(null);
+    const carouselRef = useRef(null);
 
     const [pageContent, setPageContent] = useState(null);
     const [error, setError] = useState(null);
@@ -152,8 +153,9 @@ export default function CustomPage() {
     /**
      * Opens the carousel modal.
      */
-    const openCarouselModal = () => {
+    const openCarouselModal = (id) => {
         carouselModalRef.current.open();
+        carouselRef.current.setCurrentImageId(id);
     }
     /**
      * Closes the carousel modal.
@@ -189,7 +191,7 @@ export default function CustomPage() {
                 })
             }
             <Modal ref={carouselModalRef}>
-                <Carousel closeCarouselModal={closeCarouselModal}/>
+                <Carousel ref={carouselRef} closeCarouselModal={closeCarouselModal}/>
             </Modal>
         </>
     )
