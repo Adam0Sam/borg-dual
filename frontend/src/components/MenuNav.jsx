@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 import MenuItem from './MenuItem'; // Import the MenuItem component
 import fetchAPI from '../utils/api';
 
-// from: https://remixicon.com/
-import { RiMenuLine, RiCloseLine } from '@remixicon/react';
+// import { RiMenuLine, RiCloseLine } from '@remixicon/react';
+import { RiMenuLine, RiCloseLine } from 'react-icons/ri';
 
 export default function MenuNav() {
     const [menuItems, setMenuItems] = useState([]);

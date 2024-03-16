@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import fetchAPI from '../utils/api';
-import { RiArrowDownSLine } from '@remixicon/react';
+// import { RiArrowDownSLine } from '@remixicon/react';
+import { RiArrowDownSLine } from 'react-icons/ri';
 
 export default function MenuItem({ slug, name, handleClick, isActive, closeMenu }) {
     const [menuChildren, setMenuChildren] = useState([]);

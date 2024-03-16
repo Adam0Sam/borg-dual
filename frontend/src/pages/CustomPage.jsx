@@ -163,12 +163,12 @@ export default function CustomPage() {
     }
 
     if (loading) return (
-        <Modal>
+        <Modal openOnMount customClassNames='center'>
             <LoadingWheel />
         </Modal>
     )
     else if (error) return (
-        <Modal>
+        <Modal openOnMount customClassNames='center'>
             <h1 className='error: '>{error}</h1>
         </Modal>
     )

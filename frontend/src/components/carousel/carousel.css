@@ -23,6 +23,29 @@
     object-fit: cover;
 }
 
-.carousel-arrow svg{
+.carousel-arrow svg {
     height: 5rem;
+    width: 5rem;
+    transition: fill 0.3s;
+}
+
+.carousel-arrow:hover svg,
+.carousel-arrow:focus svg {
+    fill: var(--electric-blue-color);
+}
+
+.carousel-arrow:active svg {
+    fill: var(--neon-green-color);
+}
+
+.mobile-controls{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 780px) {
+    .carousel{
+        flex-direction: column;
+    }
 }
