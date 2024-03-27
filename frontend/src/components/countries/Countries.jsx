@@ -5,6 +5,7 @@ export default function Countries({ countries }) {
     return (
         <div className='grid-container flag-container'>
             {countries.map((country) => {
+                console.log(country);
                 return (
                     <div className='country' key={country.id}>
                         <div className='country__flag'>

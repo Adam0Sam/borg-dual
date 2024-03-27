@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect, useCallback, useRef } from "react";
-import fetchAPI from '../utils/api';
+import { fetchApiContent } from '../utils/api';
 // Custom components
 import RichText from "../components/rich-text/RichText";
 import PublicationOuter from "../components/publications/PublicationOuter";
@@ -13,6 +13,7 @@ import Carousel from "../components/carousel/Carousel";
 
 import LoadingWheel from "../components/wheel/LoadingWheel";
 import Modal from "../components/modal/Modal";
+import ErrorModal from "../components/modal/ErrorModal";
 
 import { useCarousel } from "../context/CarouselProvider";
 
@@ -39,7 +40,7 @@ const PageComponent = ({ component, postSlug, openCarouselModal }) => {
         case "task-link":
             return <Tasks taskLinks={component.content} />;
         case "image-gallery":
-            return <ImageGallery imageGalleries={component.content} openCarouselModal={openCarouselModal}/>;
+            return <ImageGallery imageGalleries={component.content} openCarouselModal={openCarouselModal} />;
         default:
             return null;
     }
@@ -117,36 +118,25 @@ export default function CustomPage() {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    /**
-     * Fetches the page content from the API.
-     * @returns {Promise<object>} A promise that resolves to the fetched page content.
-     */
-    const fetchContent = useCallback(async () => {
-        try {
-            const data = await fetchAPI(`/api/pages/${postSlug}`);
-            if (!data || !data.data || !data.data.attributes) {
-                throw new Error("Invalid data received");
-            }
-            setLoading(false);
-            return data.data.attributes;
-        }
-        catch (err) {
-            setError(err.status + ": " + err.statusText);
-            setLoading(false);
-        }
-    }, [postSlug]);
 
     useEffect(() => {
-        fetchContent().then((data) => {
-            // if no hash is present, then scroll to page top
-            if (!window.location.hash) {
-                // why does scroll-behavior: smooth result in the window not scrolling to the top?
-                window.scrollTo({ top: 0 });
-            }
-            setPageContent(data);
-            clearCarousel();
-        })
-    }, [fetchContent, clearCarousel]);
+        fetchApiContent(`/api/pages/${postSlug}`)
+            .then((data) => {
+                // if no hash is present, then scroll to page top
+                if (!window.location.hash) {
+                    // why does scroll-behavior: smooth result in the window not scrolling to the top?
+                    window.scrollTo({ top: 0 });
+                }
+                setPageContent(data);
+                clearCarousel();
+            })
+            .catch((err) => {
+                setError(err.message);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }, [postSlug, clearCarousel]);
 
 
     // prop drilling with these functions is not very good but what can I do?
@@ -170,9 +160,7 @@ export default function CustomPage() {
         </Modal>
     )
     else if (error) return (
-        <Modal openOnMount customClassNames='center'>
-            <h1 className='error: '>{error}</h1>
-        </Modal>
+        <ErrorModal openOnMount customClassNames='center' status={500} errorMessage={error} />
     )
 
     return (
@@ -180,18 +168,18 @@ export default function CustomPage() {
             {pageContent.RichText.length > 0 &&
                 (
                     <div className="container rich-container m-top">
-                        <RichText currentSlug={postSlug} text={modifyArray(pageContent.RichText, postSlug)} title={pageContent.name} openCarouselModal={openCarouselModal}/>
+                        <RichText currentSlug={postSlug} text={modifyArray(pageContent.RichText, postSlug)} title={pageContent.name} openCarouselModal={openCarouselModal} />
                     </div>
                 )
             }
             {
                 // very unlikely that PageContent structure will change mid-view thus index-key is a valid apporach
                 parsePageContent(pageContent.PageContent).map((component, index) => {
-                    return <PageComponent component={component} postSlug={postSlug} key={index} openCarouselModal={openCarouselModal}/>
+                    return <PageComponent component={component} postSlug={postSlug} key={index} openCarouselModal={openCarouselModal} />
                 })
             }
             <Modal ref={carouselModalRef}>
-                <Carousel ref={carouselRef} closeCarouselModal={closeCarouselModal}/>
+                <Carousel ref={carouselRef} closeCarouselModal={closeCarouselModal} />
             </Modal>
         </>
     )
