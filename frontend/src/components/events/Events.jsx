@@ -20,5 +20,4 @@ export default function Events({ events }) {
             }
         </div>
     )
-    
 }
