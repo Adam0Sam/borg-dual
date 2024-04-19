@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { fetchApiContent } from '../utils/api';
 // Custom components
@@ -109,6 +109,7 @@ const parsePageContent = (pageContent) => {
 export default function CustomPage() {
     const params = useParams();
     const postSlug = params.slug;
+    const navigate = useNavigate();
 
     const { clearCarousel } = useCarousel();
     const carouselModalRef = useRef(null);
@@ -159,9 +160,12 @@ export default function CustomPage() {
             <LoadingWheel />
         </Modal>
     )
-    else if (error) return (
-        <ErrorModal openOnMount customClassNames='center' status={500} errorMessage={error} />
-    )
+    else if (error){ 
+        if(error === "Error: Invalid data received") navigate('/');
+        return (
+            <ErrorModal openOnMount customClassNames='center' status={500} errorMessage={error} />
+        )
+    }
 
     return (
         <>

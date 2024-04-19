@@ -8,6 +8,8 @@ export default function ErrorModal({ status, errorMessage, dismissable }) {
         modalRef.current.close();
     }
 
+    console.log(errorMessage);
+
     return (
         <Modal ref={modalRef} openOnMount customClassNames={`error__modal ${dismissable ? 'dismissable' : 'not-dismissable'}`}>
             <img className='error-image' src="https://100dayscss.com/codepen/alert.png" alt='alert' width="44" height="38" />

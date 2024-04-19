@@ -7,12 +7,12 @@ export default function Logos({ logos }) {
             {logos.map((logo) => {
                 return (
                     <div className='logo' key={logo.id}>
-                        <div className='logo__visual'>
+                        {/* <div className='logo__visual'> */}
                             <img className='logo__img'
                                 src={getStrapiURL(logo.logo?.data?.attributes?.url)}
                                 alt={`${logo.name}`}>
                             </img>
-                        </div>
+                        {/* </div> */}
                         <p className='logo__name'>{logo.name}</p>
                     </div>
                 )
