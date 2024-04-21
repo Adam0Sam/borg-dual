@@ -6,9 +6,9 @@
  */
 export function getStrapiURL(path = '') {
     return `${
-        // 'https://borg.licejus.lt'
+        'https://borg.licejus.lt'
         // 'http://localhost:1337',
-        "http://bebras.org"
+        // "http://bebras.org"
         }${path}`;
 }
 

@@ -447,6 +447,13 @@ a {
     padding: 0 min(10%, 10rem);
 }
 
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 .clickable {
     cursor: pointer;
     pointer-events: initial;

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { RouterProvider, Routes, Route, redirect, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 // top level components
 import Home from './pages/Home';
 import CustomPage from './pages/CustomPage';
@@ -7,6 +7,9 @@ import MenuNav from './components/MenuNav';
 import CarouselProvider from './context/CarouselProvider';
 
 import './App.css';
+import LodgeExample from './components/lodge/LodgeExample';
+import LoadingWheel from './components/wheel/LoadingWheel';
+import RootLayout from './pages/RootLayout';
 
 /**
  * Renders the main application component.
@@ -14,23 +17,19 @@ import './App.css';
  * @returns {JSX.Element} The rendered application component.
  */
 function App() {
-  return (
-    <div className="app">
-      <BrowserRouter>
-        <MenuNav />
-        <main className='main'>
-          <CarouselProvider>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/:slug" element={
-                <CustomPage />
-              } />
-            </Routes>
-          </CarouselProvider>
-        </main>
-      </BrowserRouter>
-    </div>
+
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<RootLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path='lodge-example' loader={()=>redirect('1')}/>
+        <Route path="lodge-example/:taskId" element={<LodgeExample />} />
+        <Route path=":slug" element={<CustomPage />} />
+      </Route>
+    )
   );
+
+  return <RouterProvider router={router} />
 }
 
 export default App;
