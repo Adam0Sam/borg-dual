@@ -1,0 +1,59 @@
+:root {
+    --header-height-mobile: 5.5rem;
+    --mobile-width: 800px;
+    --header-height-desktop: 6.5rem;
+
+    --header-height-default: var(--header-height-desktop);
+
+    /*========== Colors ==========*/
+    /*Color mode HSL(hue, saturation, lightness)*/
+    --black-color: hsl(220, 24%, 12%);
+    --black-color-light: hsl(220, 24%, 15%);
+    --black-color-lighten: hsl(220, 20%, 18%);
+    --white-color: #fff;
+    --body-color: hsl(220, 100%, 97%);
+    --electric-blue-color: #009fe3;
+    --electric-blue-color-light: #00acf6;
+    --neon-green-color: #66e700;
+    --electric-yellow: #eeff07;
+
+    /*========== Font and typography ==========*/
+    /*.5rem = 8px | 1rem = 16px ...*/
+    --body-font: "Montserrat", sans-serif;
+    --normal-font-size: .938rem;
+
+    /*========== Font weight ==========*/
+    --font-regular: 400;
+    --font-semi-bold: 600;
+
+    /*========== z index ==========*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
+
+}
+
+.content{
+    font-family: var(--body-font);
+}
+
+.btn-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.lodge-btn{
+    all: unset;
+    background-color: var(--electric-blue-color);
+    color: var(--black-color);
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.lodge-btn:hover,
+.lodge-btn:focus{
+    background-color: var(--neon-green-color);
+}
