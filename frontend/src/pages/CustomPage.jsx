@@ -121,6 +121,11 @@ export default function CustomPage() {
 
 
     useEffect(() => {
+	if(postSlug.startsWith('lodge')){
+		console.log(postSlug.split('-'));
+		const [lodge, example, id] = postSlug.split('-');
+		navigate(`/lodge-example/${id}`)
+	}
         fetchApiContent(`/api/pages/${postSlug}`)
             .then((data) => {
                 // if no hash is present, then scroll to page top
