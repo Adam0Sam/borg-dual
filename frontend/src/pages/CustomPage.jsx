@@ -121,11 +121,11 @@ export default function CustomPage() {
 
 
     useEffect(() => {
-	if(postSlug.startsWith('lodge')){
-		console.log(postSlug.split('-'));
-		const [lodge, example, id] = postSlug.split('-');
-		navigate(`/lodge-example/${id}`)
-	}
+        if (postSlug.startsWith('lodge')) {
+            console.log(postSlug.split('-'));
+            const [lodge, example, id] = postSlug.split('-');
+            navigate(`/lodge-example/${id}`)
+        }
         fetchApiContent(`/api/pages/${postSlug}`)
             .then((data) => {
                 // if no hash is present, then scroll to page top
@@ -165,8 +165,8 @@ export default function CustomPage() {
             <LoadingWheel />
         </Modal>
     )
-    else if (error){ 
-        if(error === "Error: Invalid data received") navigate('/');
+    else if (error) {
+        if (error === "Error: Invalid data received") navigate('/');
         return (
             <ErrorModal openOnMount customClassNames='center' status={500} errorMessage={error} />
         )
@@ -176,9 +176,7 @@ export default function CustomPage() {
         <>
             {pageContent.RichText.length > 0 &&
                 (
-                    <div className="container rich-container m-top">
-                        <RichText currentSlug={postSlug} text={modifyArray(pageContent.RichText, postSlug)} title={pageContent.name} openCarouselModal={openCarouselModal} />
-                    </div>
+                    <RichText currentSlug={postSlug} text={modifyArray(pageContent.RichText, postSlug)} title={pageContent.name} openCarouselModal={openCarouselModal} marginTop/>
                 )
             }
             {

@@ -1,6 +1,9 @@
 .logo-container{
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 }
+.grid-container.logo-container{
+    padding-top: 2rem;
+}
 .logo{
     display: flex;
     flex-direction: column;

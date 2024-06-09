@@ -3,13 +3,16 @@
     gap: 1.5rem;
     margin: 2rem;
     margin-top: 0;
+    display: flex;
+    flex-wrap: wrap;
     
 }
 .publication__buttons.outer-buttons{
     margin-top: 2rem;
-    display: flex;
 }
 .publication__buttons.inner-buttons{
+    border-top: 1px solid var(--black-color-light);
+    padding-top: 1.5rem;
     display: none;
 }
 .publication__buttons.inner-buttons.visible{

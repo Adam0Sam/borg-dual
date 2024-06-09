@@ -1,11 +1,14 @@
 .rich-wrapper{  
+    box-sizing:border-box;
     text-align: justify;
     flex-grow: 1;
     /* width: min(40rem, 100%); */
+    padding-bottom: 3rem;
+    padding-top: 1rem;
     width: 100%;
-    padding-bottom: 2rem;
     border-bottom: 1px solid var(--black-color-lighten);
 }
+
 .rich-wrapper img{
     display: block;
     width: 100%;

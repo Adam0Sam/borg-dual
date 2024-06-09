@@ -1,6 +1,6 @@
 .tasks{
     margin-top: 3rem;
-    padding: 0 min(10%, 10rem);
+    padding: var(--content-padding-big);
 }
 
 .task{

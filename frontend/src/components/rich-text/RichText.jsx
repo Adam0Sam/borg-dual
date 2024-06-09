@@ -14,7 +14,7 @@ const SYMBOLS_TO_REMOVE = ['"', '“'];
  * @param {string} props.currentSlug - The current slug for the page.
  * @returns {JSX.Element} The rendered rich text component.
  */
-export default function RichText({ text, title, currentSlug, openCarouselModal }) {
+export default function RichText({ text, title, currentSlug, openCarouselModal, marginTop, noPadding }) {
 
     const hasSections = useMemo(() => sectionedPages.includes(currentSlug), [currentSlug]);
     const { hash } = window.location;
@@ -61,9 +61,9 @@ export default function RichText({ text, title, currentSlug, openCarouselModal }
     );
 
     return (
-        <>
+        <div className={`${noPadding ? '' : 'container'} rich-container ${marginTop ? 'm-top' : ''}`}>
             <h1>{title}</h1>
             {richContent}
-        </>
+        </div>
     );
 }

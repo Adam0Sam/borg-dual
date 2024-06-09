@@ -30,9 +30,7 @@ export default function PublicationInner({ publicationLinks }) {
                     </button>
                 )}
             </div>
-            <div className='container rich-container'>
-                <RichText text={publicationContent} />
-            </div>
+            <RichText text={publicationContent} noPadding/>
         </>
     )
 
