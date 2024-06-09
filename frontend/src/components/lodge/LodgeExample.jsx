@@ -9,7 +9,7 @@ export default function LodgeExample() {
 			<iframe
 				height={800}
 				width={800}
-				src={`http://localhost:3000/lodge1.html?n=${taskId}`}>
+				src={`https://bebras.org/lodge1.html?n=${taskId}`}>
 			</iframe>
 		</div>
 	)
