@@ -23,7 +23,7 @@ export default function ImageGallery({ imageGalleries, openCarouselModal }) {
                                         return (
                                             <div className="gallery-img" key={image.id}>
                                                 <img
-                                                    className="clickable"
+                                                    className={"clickable " + imageId}
                                                     alt={image.attributes?.alternativeText || image.attributes.name}
                                                     src={getStrapiURL(image.attributes?.url)}
                                                     onClick={()=>openCarouselModal(imageId)}>

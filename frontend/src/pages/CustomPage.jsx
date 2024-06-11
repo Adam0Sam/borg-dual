@@ -126,7 +126,7 @@ export default function CustomPage() {
             const [lodge, example, id] = postSlug.split('-');
             navigate(`/lodge-example/${id}`)
         }
-        fetchApiContent(`/api/pages/${postSlug}`)
+        fetchApiContent(`/api/pages/${postSlug.slice(-4)==='html' ? postSlug.slice(0,-5) : postSlug}`)
             .then((data) => {
                 // if no hash is present, then scroll to page top
                 if (!window.location.hash) {
@@ -135,6 +135,7 @@ export default function CustomPage() {
                 }
                 setPageContent(data);
                 clearCarousel();
+                setError(null);
             })
             .catch((err) => {
                 setError(err.message);
@@ -166,7 +167,10 @@ export default function CustomPage() {
         </Modal>
     )
     else if (error) {
-        if (error === "Error: Invalid data received") navigate('/');
+        // if (error === "Error: Invalid data received") {
+        //     console.log('Invalid data received');
+        //     returnnew Error(error);
+        // }
         return (
             <ErrorModal openOnMount customClassNames='center' status={500} errorMessage={error} />
         )
@@ -176,7 +180,7 @@ export default function CustomPage() {
         <>
             {pageContent.RichText.length > 0 &&
                 (
-                    <RichText currentSlug={postSlug} text={modifyArray(pageContent.RichText, postSlug)} title={pageContent.name} openCarouselModal={openCarouselModal} marginTop/>
+                    <RichText currentSlug={postSlug} text={modifyArray(pageContent.RichText, postSlug)} title={pageContent.name} openCarouselModal={openCarouselModal} marginTop />
                 )
             }
             {

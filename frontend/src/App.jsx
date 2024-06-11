@@ -1,4 +1,4 @@
-import { RouterProvider, Routes, Route, redirect, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import { RouterProvider, Routes, Route, redirect, createBrowserRouter, createRoutesFromElements, useRouteError } from 'react-router-dom';
 // top level components
 import Home from './pages/Home';
 import CustomPage from './pages/CustomPage';
@@ -11,6 +11,17 @@ import LodgeExample from './components/lodge/LodgeExample';
 import LoadingWheel from './components/wheel/LoadingWheel';
 import RootLayout from './pages/RootLayout';
 
+function ErrorBoundary(){
+  let error = useRouteError();
+  console.log('Error!', error);
+  return (
+    <div>
+      <h1>Oops! Something went wrong.</h1>
+    </div>
+  )
+
+}
+
 /**
  * Renders the main application component.
  *
@@ -20,7 +31,7 @@ function App() {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<RootLayout />}>
+      <Route path="/" element={<RootLayout />} errorElement={<ErrorBoundary />}>
         <Route path="/" element={<Home />} />
         <Route path='lodge-example' loader={()=>redirect('1')}/>
         <Route path="lodge-example/:taskId" element={<LodgeExample />} />
