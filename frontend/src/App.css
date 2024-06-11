@@ -65,6 +65,27 @@ body {
     /* scroll-behavior: smooth; */
 }
 
+ol {
+    counter-reset: item;
+}
+
+ol>li {
+    list-style-type: none;
+    position: relative;
+}
+ol>li{
+    display: block;
+}
+ol>li:before {
+    position: absolute;
+    content: counter(item) ".";
+    font-weight: var(--font-semi-bold);
+    counter-increment: item;
+    color: var(--black-color);
+    display: inline-block;
+    left: -18px
+}
+
 ul {
     list-style: none;
     -webkit-tap-highlight-color: transparent;
@@ -139,13 +160,13 @@ a {
 }
 
 @media screen and (max-width: 1024px) {
-    .nav__logo-text{
+    .nav__logo-text {
         font-size: 1rem;
     }
 }
 
 @media screen and (max-width: 950px) {
-    .nav__logo-text{
+    .nav__logo-text {
         display: none;
     }
 }
@@ -341,7 +362,8 @@ a {
         justify-content: initial;
         column-gap: .25rem;
     }
-    .nav__link.single{
+
+    .nav__link.single {
         pointer-events: initial;
     }
 
@@ -430,7 +452,8 @@ a {
 .grid-container {
     display: grid;
     gap: 1rem;
-    padding: var(--content-padding-big);;
+    padding: var(--content-padding-big);
+    ;
 }
 
 .m-top {
@@ -445,11 +468,11 @@ a {
     gap: 3rem;
 }
 
-.container{
+.container {
     padding: var(--content-padding-big);
 }
 
-.center{
+.center {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -461,11 +484,11 @@ a {
     pointer-events: initial;
 }
 
-.vu-img-container{
+.vu-img-container {
     height: 100%
 }
 
-.vu-img-container>img{
+.vu-img-container>img {
     width: 100%;
     height: 100%;
 
@@ -475,7 +498,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap:0.5rem;
+    gap: 0.5rem;
     height: 100px;
     border-top: 1px solid var(--black-color);
     padding: 2rem 0;

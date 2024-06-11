@@ -58,13 +58,6 @@ export default function Home() {
             <InfoRow infoRow={content.InfoRowOne} customClass={'row-one'} />
             <TaskRow taskLinks={content.TaskLinks} />
             <InfoRow infoRow={content.InfoRowTwo} customClass={'row-two'} />
-            <div className='footer'>
-                Organized by
-                <div className='vu-img-container'>
-                    <img src="/vu.bmp" alt="Vilnius University logo">
-                    </img>
-                </div>
-            </div>
         </>
     )
 

@@ -11,17 +11,6 @@ import LodgeExample from './components/lodge/LodgeExample';
 import LoadingWheel from './components/wheel/LoadingWheel';
 import RootLayout from './pages/RootLayout';
 
-function ErrorBoundary(){
-  let error = useRouteError();
-  console.log('Error!', error);
-  return (
-    <div>
-      <h1>Oops! Something went wrong.</h1>
-    </div>
-  )
-
-}
-
 /**
  * Renders the main application component.
  *
@@ -31,9 +20,9 @@ function App() {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<RootLayout />} errorElement={<ErrorBoundary />}>
+      <Route path="/" element={<RootLayout />}>
         <Route path="/" element={<Home />} />
-        <Route path='lodge-example' loader={()=>redirect('1')}/>
+        <Route path='lodge-example' loader={() => redirect('1')} />
         <Route path="lodge-example/:taskId" element={<LodgeExample />} />
         <Route path=":slug" element={<CustomPage />} />
       </Route>

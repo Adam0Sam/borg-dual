@@ -167,10 +167,9 @@ export default function CustomPage() {
         </Modal>
     )
     else if (error) {
-        // if (error === "Error: Invalid data received") {
-        //     console.log('Invalid data received');
-        //     returnnew Error(error);
-        // }
+        if (error === "Error: Invalid data received") {
+            navigate('/')
+        }
         return (
             <ErrorModal openOnMount customClassNames='center' status={500} errorMessage={error} />
         )

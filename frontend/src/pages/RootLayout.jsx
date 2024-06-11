@@ -9,6 +9,13 @@ export default function RootLayout() {
             <main className="main">
                 <Outlet />
             </main>
+            <div className='footer'>
+                Organized by
+                <div className='vu-img-container'>
+                    <img src="/vu.bmp" alt="Vilnius University logo">
+                    </img>
+                </div>
+            </div>
         </CarouselProvider>
     )
 }

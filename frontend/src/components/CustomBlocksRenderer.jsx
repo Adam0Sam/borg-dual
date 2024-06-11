@@ -37,6 +37,15 @@ export default function CustomBlocksRenderer({ content, openCarouselModal, custo
         return <a href={url}>{children}</a>;
     };
 
+    const renderList = ({ children, format }) => {
+        const ordered = format === 'ordered'
+        if (ordered) {
+            console.log(children)
+            return <ol>{children}</ol>;
+        }
+        return <ul>{children}</ul>;
+    }
+
     return (
         <BlocksRenderer
             content={content}
@@ -44,6 +53,7 @@ export default function CustomBlocksRenderer({ content, openCarouselModal, custo
                 paragraph: ({ children }) => renderParagraph(children),
                 image: (props) => renderImage(props),
                 link: (props) => renderLink(props),
+                list: (props) => renderList(props),
                 ...customBlocks
             }}
         />
