@@ -22,6 +22,7 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<RootLayout />}>
         <Route path="/" element={<Home />} />
+        <Route path="what-is-bebras" element={<Home />} />
         <Route path='lodge-example' loader={() => redirect('1')} />
         <Route path="lodge-example/:taskId" element={<LodgeExample />} />
         <Route path=":slug" element={<CustomPage />} />

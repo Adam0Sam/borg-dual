@@ -70,8 +70,10 @@ export default function MenuItem({ slug, name, handleClick, isActive, closeMenu 
                     <ul className={`dropdown__menu ${isActive ? 'active' : ''}`} >
                         {menuChildren.map((child) => {
                             const childName = child.name;
-                            const childSlug = child?.page?.data?.attributes?.slug || '';
-
+                            let childSlug = child?.page?.data?.attributes?.slug || '';
+                            if(childSlug === 'home'){
+                                childSlug = '/';
+                            }
                             return (
                                 <li key={childSlug}>
                                     <NavLink
