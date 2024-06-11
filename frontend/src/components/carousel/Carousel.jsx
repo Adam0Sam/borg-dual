@@ -28,7 +28,7 @@ const Carousel = forwardRef(function ({ closeCarouselModal }, ref) {
 
     useImperativeHandle(ref, () => ({
         setCurrentImageId: (id) => {
-            if(!id) return;
+            if(typeof id !== 'number') return;
             if (id < 0 || id >= carousel.length) return;
             if(!carousel[id]) return;
             setCurrentImageId(id);
