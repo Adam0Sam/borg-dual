@@ -510,3 +510,7 @@ a {
     margin: 1rem 0;
     cursor: pointer;
 }
+
+.temp-container{
+    padding: var(--content-padding-big);
+}

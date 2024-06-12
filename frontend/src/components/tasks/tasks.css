@@ -16,7 +16,7 @@
 }
 .task-content.visible{
     padding: 2rem 1rem;
-    max-height: 100rem;
+    max-height: min-content;
 }
 
 .task__buttons{

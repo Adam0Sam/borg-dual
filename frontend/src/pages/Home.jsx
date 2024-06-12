@@ -8,6 +8,7 @@ import TaskRow from '../components/TaskRow';
 import LoadingWheel from '../components/wheel/LoadingWheel';
 import Modal from '../components/modal/Modal';
 import ErrorModal from '../components/modal/ErrorModal';
+import { Link } from 'react-router-dom';
 
 /**
  * Renders the Home page component.
@@ -56,7 +57,14 @@ export default function Home() {
                 <CustomBlocksRenderer content={content.Alert.TextInstance} />
             </div>
             <InfoRow infoRow={content.InfoRowOne} customClass={'row-one'} />
-            <TaskRow taskLinks={content.TaskLinks} />
+            <div>
+                <TaskRow taskLinks={content.TaskLinks} />
+                <div className='temp-container'>
+                    Everyone can do it. The Bebras challenges are made of a set of short problems called Bebras tasks and are delivered online. The tasks are fun, engaging and based on problems that computer scientists often meet and enjoy solving. The tasks can be solved without prior knowledge but instead require logical thinking. The aim is to solve as many as you can in the allotted time.
+                    
+                    More information <Link to='/what-is-a-bebras-task'>here</Link>.
+                </div>
+            </div>
             <InfoRow infoRow={content.InfoRowTwo} customClass={'row-two'} />
         </>
     )
