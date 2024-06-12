@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_page_ck_editors",
+  "info": {
+    "displayName": "CKEditor",
+    "icon": "code",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "CKEditor": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    }
+  }
+}

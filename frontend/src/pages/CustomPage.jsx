@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { fetchApiContent } from '../utils/api';
 // Custom components
 import RichText from "../components/rich-text/RichText";
@@ -10,6 +10,7 @@ import Countries from "../components/countries/Countries";
 import Tasks from "../components/tasks/Tasks";
 import ImageGallery from "../components/image-gallery/ImageGallery";
 import Carousel from "../components/carousel/Carousel";
+import InsertedHTML from "../components/inserted-html/InsertedHTML";
 
 import LoadingWheel from "../components/wheel/LoadingWheel";
 import Modal from "../components/modal/Modal";
@@ -29,6 +30,8 @@ const PageComponent = ({ component, postSlug, openCarouselModal }) => {
     switch (component.type) {
         case "rich-text":
             return <RichText currentSlug={postSlug} text={component.content} />;
+        case "ck-editor":
+            return <InsertedHTML html={component.content[0].CKEditor} />;
         case "publication-button":
             return <PublicationOuter publicationButtons={component.content} />;
         case "event":

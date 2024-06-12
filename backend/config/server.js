@@ -16,9 +16,9 @@
   },
 //  socket: '/tmp/nginx.socket', // only use if absolutely required
   emitErrors: false,
-  url: env('PUBLIC_URL', 'https://borg.licejus.lt'),
+  // url: env('PUBLIC_URL', 'https://borg.licejus.lt'),
 //  url: env('PUBLIC_URL', 'https://bebras.org'),
-  // url: env('PUBLIC_URL', 'http://localhost:1337'),
+  url: env('PUBLIC_URL', 'http://localhost:1337'),
   proxy: env.bool('IS_PROXIED', true),
   cron: {
     enabled: env.bool('CRON_ENABLED', false),

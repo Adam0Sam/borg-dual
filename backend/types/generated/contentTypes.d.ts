@@ -868,7 +868,8 @@ export interface ApiPagePage extends Schema.CollectionType {
         'task.task-link',
         'gallery.image-gallery',
         'publication.publication-button',
-        'page.rich-text'
+        'page.rich-text',
+        'page.ck-editor'
       ]
     >;
     createdAt: Attribute.DateTime;

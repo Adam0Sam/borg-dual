@@ -1,0 +1,19 @@
+figure.table>table{
+    width: 100%;
+    border-spacing: 0;
+    border-collapse:collapse;
+    border: 1px solid #d3d3d3;
+    margin: 0 auto;
+    padding: 0;
+    table-layout: fixed;
+    width: max-content;
+}
+tr{
+    border-bottom: 1px solid #d3d3d3;
+}
+td, th{
+    border-right: 1px solid #d3d3d3;
+    padding: 0.5rem;
+    padding-right: 3rem;
+    text-align: left;
+}

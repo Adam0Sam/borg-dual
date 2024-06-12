@@ -95,11 +95,30 @@ export interface NavigationNavLink extends Schema.Component {
   };
 }
 
+export interface PageCkEditor extends Schema.Component {
+  collectionName: 'components_page_ck_editors';
+  info: {
+    displayName: 'CKEditor';
+    icon: 'code';
+    description: '';
+  };
+  attributes: {
+    CKEditor: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      >;
+  };
+}
+
 export interface PageRichText extends Schema.Component {
   collectionName: 'components_page_rich_texts';
   info: {
     displayName: 'Rich Text';
     description: '';
+    icon: 'medium';
   };
   attributes: {
     TextInstance: Attribute.Blocks;
@@ -170,6 +189,7 @@ declare module '@strapi/types' {
       'icon.country': IconCountry;
       'icon.logo': IconLogo;
       'navigation.nav-link': NavigationNavLink;
+      'page.ck-editor': PageCkEditor;
       'page.rich-text': PageRichText;
       'publication.publication-button': PublicationPublicationButton;
       'publication.publication-link': PublicationPublicationLink;
