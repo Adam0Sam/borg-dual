@@ -4,10 +4,10 @@ import CustomBlocksRenderer from '../CustomBlocksRenderer';
 
 import './infoRow.css';
 
-export default function InfoRow({ infoRow, customClass }) {
+export default function InfoRow({ infoRow }) {
     return (
-        <div className={`info-row ${customClass}`}>
-            {infoRow.map((info) => {
+        <div className={`info-row ${infoRow.reverse ? 'row-reverse' : ''}`}>
+            {infoRow.InfoColumn.map((info) => {
                 return (
                     <div className='info-column' key={info.id}>
                         <div className='info-text'>
@@ -15,7 +15,7 @@ export default function InfoRow({ infoRow, customClass }) {
                             <CustomBlocksRenderer content={info.TextInstance} />
                         </div>
                         <div className='info-image'>
-                            <img 
+                            <img
                                 src={getStrapiURL(info.image.data.attributes?.url)}
                                 alt={`${info.name}`}>
                             </img>
@@ -26,3 +26,4 @@ export default function InfoRow({ infoRow, customClass }) {
         </div>
     )
 }
+

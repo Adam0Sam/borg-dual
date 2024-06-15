@@ -12,6 +12,7 @@ import ImageGallery from "../components/image-gallery/ImageGallery";
 import Carousel from "../components/carousel/Carousel";
 import InsertedHTML from "../components/inserted-html/InsertedHTML";
 import AlertMessage from "../components/AlertMessage";
+import InfoRow from "../components/info-row/InfoRow";
 
 import LoadingWheel from "../components/wheel/LoadingWheel";
 import Modal from "../components/modal/Modal";
@@ -47,6 +48,8 @@ const PageComponent = ({ component, pageSlug, openCarouselModal }) => {
             return <ImageGallery imageGalleries={component.content} openCarouselModal={openCarouselModal} />;
         case "alert":
             return <AlertMessage message={component.content}/>
+        case "info-row":
+            return <InfoRow infoRow={component.content[0]} />;
         default:
             return null;
     }

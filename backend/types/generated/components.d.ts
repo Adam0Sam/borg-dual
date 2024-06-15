@@ -48,7 +48,6 @@ export interface HomeInfoColumn extends Schema.Component {
     image: Attribute.Media;
     name: Attribute.String;
     TextInstance: Attribute.Blocks;
-    reverse: Attribute.Boolean;
   };
 }
 
@@ -57,6 +56,7 @@ export interface HomeInfoRow extends Schema.Component {
   info: {
     displayName: 'InfoRow';
     icon: 'oneToMany';
+    description: '';
   };
   attributes: {
     InfoColumn: Attribute.Component<'home.info-column', true> &
@@ -64,6 +64,7 @@ export interface HomeInfoRow extends Schema.Component {
       Attribute.SetMinMax<{
         min: 1;
       }>;
+    reverse: Attribute.Boolean;
   };
 }
 

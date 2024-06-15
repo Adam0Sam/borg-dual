@@ -6,6 +6,7 @@
     gap: 8rem;
     overflow: hidden;
     padding: var(--content-padding-small);
+    padding: 2rem 0;
 }
 
 .info-column {
@@ -16,7 +17,7 @@
     align-items: center;
 }
 
-.info-row.row-two .info-column {
+.info-row.row-reverse .info-column {
     flex-direction: column-reverse;
 }
 
@@ -24,7 +25,7 @@
     margin-bottom: 1rem;
 }
 
-.info-row.row-two .info-text>h3 {
+.info-row.row-reverse .info-text>h3 {
     text-align: center;
 }
 

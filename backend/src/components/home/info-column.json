@@ -23,9 +23,6 @@
     },
     "TextInstance": {
       "type": "blocks"
-    },
-    "reverse": {
-      "type": "boolean"
     }
   }
 }
