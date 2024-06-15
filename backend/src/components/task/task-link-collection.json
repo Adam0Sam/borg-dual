@@ -1,18 +1,21 @@
 {
   "collectionName": "components_task_task_link_collections",
   "info": {
-    "displayName": "Task Link Collection",
-    "icon": "oneToMany",
+    "displayName": "TaskExamples Cover Images",
+    "icon": "picture",
     "description": ""
   },
   "options": {},
   "attributes": {
-    "TaskLink": {
-      "type": "component",
-      "repeatable": true,
-      "component": "task.task-link",
-      "required": true,
-      "min": 1
+    "CoverImages": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }

@@ -439,15 +439,6 @@ a {
     max-width: 80%;
 }
 
-.button-container {
-    background-color: var(--electric-blue-color-light);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 4rem;
-    overflow-x: scroll;
-}
-
 /* ========== UTILITIES ========== */
 .grid-container {
     display: grid;
@@ -506,10 +497,6 @@ a {
 }
 
 /* ========== TEMPORARY ========== */
-.task-block {
-    margin: 1rem 0;
-    cursor: pointer;
-}
 
 .temp-container{
     padding: var(--content-padding-big);

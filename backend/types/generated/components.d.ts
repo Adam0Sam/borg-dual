@@ -190,16 +190,12 @@ export interface TaskTaskExample extends Schema.Component {
 export interface TaskTaskLinkCollection extends Schema.Component {
   collectionName: 'components_task_task_link_collections';
   info: {
-    displayName: 'Task Link Collection';
-    icon: 'oneToMany';
+    displayName: 'TaskExamples Cover Images';
+    icon: 'picture';
     description: '';
   };
   attributes: {
-    TaskLink: Attribute.Component<'task.task-link', true> &
-      Attribute.Required &
-      Attribute.SetMinMax<{
-        min: 1;
-      }>;
+    CoverImages: Attribute.Media;
   };
 }
 

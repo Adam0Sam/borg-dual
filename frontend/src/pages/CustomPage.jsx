@@ -13,6 +13,7 @@ import Carousel from "../components/carousel/Carousel";
 import InsertedHTML from "../components/inserted-html/InsertedHTML";
 import AlertMessage from "../components/AlertMessage";
 import InfoRow from "../components/info-row/InfoRow";
+import TaskRow from "../components/tasks/TaskRow";
 
 import LoadingWheel from "../components/wheel/LoadingWheel";
 import Modal from "../components/modal/Modal";
@@ -50,6 +51,8 @@ const PageComponent = ({ component, pageSlug, openCarouselModal }) => {
             return <AlertMessage message={component.content}/>
         case "info-row":
             return <InfoRow infoRow={component.content[0]} />;
+        case "task-link-collection":
+            return <TaskRow taskImages={component.content[0].CoverImages.data} />;
         default:
             return null;
     }
@@ -106,7 +109,6 @@ const parsePageContent = (pageContent) => {
             content: [pageContent[i]]
         });
     }
-    console.log(constructedComponents)
     return constructedComponents;
 }
 
