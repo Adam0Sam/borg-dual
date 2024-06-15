@@ -868,7 +868,6 @@ export interface ApiPagePage extends Schema.CollectionType {
         'gallery.image-gallery',
         'publication.publication-button',
         'page.rich-text',
-        'page.ck-editor',
         'home.alert',
         'home.info-column',
         'home.info-row',
