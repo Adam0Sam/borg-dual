@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_home_info_rows",
+  "info": {
+    "displayName": "InfoRow",
+    "icon": "oneToMany"
+  },
+  "options": {},
+  "attributes": {
+    "InfoColumn": {
+      "type": "component",
+      "repeatable": true,
+      "component": "home.info-column",
+      "required": true,
+      "min": 1
+    }
+  }
+}

@@ -26,10 +26,10 @@ import { useCarousel } from "../context/CarouselProvider";
  * @param {string} props.postSlug - The post slug.
  * @returns {JSX.Element|null} The rendered page component.
  */
-const PageComponent = ({ component, postSlug, openCarouselModal }) => {
+const PageComponent = ({ component, pageSlug, openCarouselModal }) => {
     switch (component.type) {
         case "rich-text":
-            return <RichText currentSlug={postSlug} text={component.content} />;
+            return <RichText currentSlug={pageSlug} text={component.content} />;
         case "ck-editor":
             return <InsertedHTML html={component.content[0].CKEditor} />;
         case "publication-button":
@@ -104,14 +104,30 @@ const parsePageContent = (pageContent) => {
     return constructedComponents;
 }
 
+const getNormalizedSlug = (slug) => {
+    const homePageSlugs = ['what-is-bebras', '/']
+    if (homePageSlugs.includes(slug)) return 'home'
+    if (slug.slice(-4) === 'html') return slug.slice(0, -5)
+    return slug
+}
+
+const slugExists = async (slug) => {
+    try {
+        await fetchApiContent(`/api/pages/${slug}`)
+        return true
+    } catch (error) {
+        return false
+    }
+}
+
 /**
  * CustomPage component.
  * Renders a custom page with dynamic content.
  * @returns {JSX.Element} The rendered CustomPage component.
  */
-export default function CustomPage() {
+export default function CustomPage({ passedSlug }) {
     const params = useParams();
-    const postSlug = params.slug;
+    const pageSlug = getNormalizedSlug(passedSlug || params?.slug);
     const navigate = useNavigate();
 
     const { clearCarousel } = useCarousel();
@@ -124,29 +140,30 @@ export default function CustomPage() {
 
 
     useEffect(() => {
-        if (postSlug.startsWith('lodge')) {
-            console.log(postSlug.split('-'));
-            const [lodge, example, id] = postSlug.split('-');
-            navigate(`/lodge-example/${id}`)
-        }
-        fetchApiContent(`/api/pages/${postSlug.slice(-4)==='html' ? postSlug.slice(0,-5) : postSlug}`)
-            .then((data) => {
-                // if no hash is present, then scroll to page top
-                if (!window.location.hash) {
-                    // why does scroll-behavior: smooth result in the window not scrolling to the top?
-                    window.scrollTo({ top: 0 });
-                }
-                setPageContent(data);
-                clearCarousel();
-                setError(null);
-            })
-            .catch((err) => {
-                setError(err.message);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-    }, [postSlug, clearCarousel]);
+        slugExists(pageSlug).then((exists) => {
+            if (!exists) {
+                navigate('/')
+            } else {
+                fetchApiContent(`/api/pages/${pageSlug}`)
+                    .then((data) => {
+                        // if no hash is present, then scroll to page top
+                        if (!window.location.hash) {
+                            // why does scroll-behavior: smooth result in the window not scrolling to the top?
+                            window.scrollTo({ top: 0 });
+                        }
+                        setPageContent(data);
+                        clearCarousel();
+                        setError(null);
+                    })
+                    .catch((err) => {
+                        setError(err.message);
+                    })
+                    .finally(() => {
+                        setLoading(false);
+                    });
+            }
+        });
+    }, [pageSlug, clearCarousel, navigate]);
 
 
     // prop drilling with these functions is not very good but what can I do?
@@ -170,9 +187,9 @@ export default function CustomPage() {
         </Modal>
     )
     else if (error) {
-        if (error === "Error: Invalid data received") {
-            navigate('/')
-        }
+        // if (error === "Error: Invalid data received") {
+        //     navigate('/')
+        // }
         return (
             <ErrorModal openOnMount customClassNames='center' status={500} errorMessage={error} />
         )
@@ -182,13 +199,13 @@ export default function CustomPage() {
         <>
             {pageContent.RichText.length > 0 &&
                 (
-                    <RichText currentSlug={postSlug} text={modifyArray(pageContent.RichText, postSlug)} title={pageContent.name} openCarouselModal={openCarouselModal} marginTop />
+                    <RichText currentSlug={pageSlug} text={modifyArray(pageContent.RichText, pageSlug)} title={pageContent.name} openCarouselModal={openCarouselModal} marginTop />
                 )
             }
             {
                 // very unlikely that PageContent structure will change mid-view thus index-key is a valid apporach
                 parsePageContent(pageContent.PageContent).map((component, index) => {
-                    return <PageComponent component={component} postSlug={postSlug} key={index} openCarouselModal={openCarouselModal} />
+                    return <PageComponent component={component} postSlug={pageSlug} key={index} openCarouselModal={openCarouselModal} />
                 })
             }
             <Modal ref={carouselModalRef}>

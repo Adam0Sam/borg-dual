@@ -50,6 +50,21 @@ export interface HomeInfoColumn extends Schema.Component {
   };
 }
 
+export interface HomeInfoRow extends Schema.Component {
+  collectionName: 'components_home_info_rows';
+  info: {
+    displayName: 'InfoRow';
+    icon: 'oneToMany';
+  };
+  attributes: {
+    InfoColumn: Attribute.Component<'home.info-column', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 1;
+      }>;
+  };
+}
+
 export interface IconCountry extends Schema.Component {
   collectionName: 'components_icon_countries';
   info: {
@@ -186,6 +201,7 @@ declare module '@strapi/types' {
       'gallery.image-gallery': GalleryImageGallery;
       'home.alert': HomeAlert;
       'home.info-column': HomeInfoColumn;
+      'home.info-row': HomeInfoRow;
       'icon.country': IconCountry;
       'icon.logo': IconLogo;
       'navigation.nav-link': NavigationNavLink;
