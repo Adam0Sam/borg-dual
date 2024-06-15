@@ -123,9 +123,10 @@ export interface PageCkEditor extends Schema.Component {
   attributes: {
     CKEditor: Attribute.RichText &
       Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
+        'plugin::ckeditor.CKEditor',
         {
-          preset: 'toolbar';
+          output: 'HTML';
+          preset: 'standard';
         }
       >;
   };

@@ -37,7 +37,8 @@
         "home.alert",
         "home.info-column",
         "home.info-row",
-        "task.task-link-collection"
+        "task.task-link-collection",
+        "page.ck-editor"
       ]
     }
   }

@@ -871,7 +871,8 @@ export interface ApiPagePage extends Schema.CollectionType {
         'home.alert',
         'home.info-column',
         'home.info-row',
-        'task.task-link-collection'
+        'task.task-link-collection',
+        'page.ck-editor'
       ]
     >;
     createdAt: Attribute.DateTime;

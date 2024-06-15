@@ -10,9 +10,10 @@
     "CKEditor": {
       "type": "customField",
       "options": {
-        "preset": "toolbar"
+        "output": "HTML",
+        "preset": "standard"
       },
-      "customField": "plugin::ckeditor5.CKEditor"
+      "customField": "plugin::ckeditor.CKEditor"
     }
   }
 }
