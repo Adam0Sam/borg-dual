@@ -11,6 +11,7 @@ import Tasks from "../components/tasks/Tasks";
 import ImageGallery from "../components/image-gallery/ImageGallery";
 import Carousel from "../components/carousel/Carousel";
 import InsertedHTML from "../components/inserted-html/InsertedHTML";
+import AlertMessage from "../components/AlertMessage";
 
 import LoadingWheel from "../components/wheel/LoadingWheel";
 import Modal from "../components/modal/Modal";
@@ -44,6 +45,8 @@ const PageComponent = ({ component, pageSlug, openCarouselModal }) => {
             return <Tasks taskLinks={component.content} />;
         case "image-gallery":
             return <ImageGallery imageGalleries={component.content} openCarouselModal={openCarouselModal} />;
+        case "alert":
+            return <AlertMessage message={component.content}/>
         default:
             return null;
     }
@@ -100,7 +103,7 @@ const parsePageContent = (pageContent) => {
             content: [pageContent[i]]
         });
     }
-
+    console.log(constructedComponents)
     return constructedComponents;
 }
 

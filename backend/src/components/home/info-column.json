@@ -2,25 +2,30 @@
   "collectionName": "components_home_info_columns",
   "info": {
     "displayName": "InfoColumn",
-    "icon": "feather"
+    "icon": "feather",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "name": {
       "type": "string"
     },
     "TextInstance": {
       "type": "blocks"
+    },
+    "reverse": {
+      "type": "boolean"
     }
   }
 }

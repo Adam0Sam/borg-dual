@@ -42,11 +42,13 @@ export interface HomeInfoColumn extends Schema.Component {
   info: {
     displayName: 'InfoColumn';
     icon: 'feather';
+    description: '';
   };
   attributes: {
     image: Attribute.Media;
     name: Attribute.String;
     TextInstance: Attribute.Blocks;
+    reverse: Attribute.Boolean;
   };
 }
 
@@ -183,6 +185,22 @@ export interface TaskTaskExample extends Schema.Component {
   };
 }
 
+export interface TaskTaskLinkCollection extends Schema.Component {
+  collectionName: 'components_task_task_link_collections';
+  info: {
+    displayName: 'Task Link Collection';
+    icon: 'oneToMany';
+    description: '';
+  };
+  attributes: {
+    TaskLink: Attribute.Component<'task.task-link', true> &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 1;
+      }>;
+  };
+}
+
 export interface TaskTaskLink extends Schema.Component {
   collectionName: 'components_task_task_links';
   info: {
@@ -210,6 +228,7 @@ declare module '@strapi/types' {
       'publication.publication-button': PublicationPublicationButton;
       'publication.publication-link': PublicationPublicationLink;
       'task.task-example': TaskTaskExample;
+      'task.task-link-collection': TaskTaskLinkCollection;
       'task.task-link': TaskTaskLink;
     }
   }

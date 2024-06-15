@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_task_task_link_collections",
+  "info": {
+    "displayName": "Task Link Collection",
+    "icon": "oneToMany",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "TaskLink": {
+      "type": "component",
+      "repeatable": true,
+      "component": "task.task-link",
+      "required": true,
+      "min": 1
+    }
+  }
+}

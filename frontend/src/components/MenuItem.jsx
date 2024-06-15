@@ -71,9 +71,6 @@ export default function MenuItem({ slug, name, handleClick, isActive, closeMenu 
                         {menuChildren.map((child) => {
                             const childName = child.name;
                             let childSlug = child?.page?.data?.attributes?.slug || '';
-                            if(childSlug === 'home'){
-                                childSlug = '/';
-                            }
                             return (
                                 <li key={childSlug}>
                                     <NavLink

@@ -789,7 +789,6 @@ export interface ApiHomePageHomePage extends Schema.SingleType {
       Attribute.SetMinMax<{
         max: 3;
       }>;
-    TaskLinks: Attribute.Component<'task.task-link', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -869,7 +868,11 @@ export interface ApiPagePage extends Schema.CollectionType {
         'gallery.image-gallery',
         'publication.publication-button',
         'page.rich-text',
-        'page.ck-editor'
+        'page.ck-editor',
+        'home.alert',
+        'home.info-column',
+        'home.info-row',
+        'task.task-link-collection'
       ]
     >;
     createdAt: Attribute.DateTime;

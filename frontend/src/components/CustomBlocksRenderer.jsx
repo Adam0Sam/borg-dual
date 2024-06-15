@@ -1,9 +1,9 @@
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import { getStrapiURL } from '../utils/api';
 import { useCarousel } from '../context/CarouselProvider';
+import { Link } from 'react-router-dom';
 
-const BASE_URL = 'bebras.org';
-const ALT_BASE_URL = 'borg.licejus.lt';
+const BEBRAS_HOSTNAMES = ['borg.licejus.lt', 'bebras.org'];
 
 export default function CustomBlocksRenderer({ content, openCarouselModal, customBlocks = {} }) {
     const { addToCarousel, getCarouselLength } = useCarousel();
@@ -14,7 +14,6 @@ export default function CustomBlocksRenderer({ content, openCarouselModal, custo
         }
         return <p>{children}</p>;
     };
-
 
     const renderImage = ({ image }) => {
         if (!image || !image.url) {
@@ -29,10 +28,9 @@ export default function CustomBlocksRenderer({ content, openCarouselModal, custo
     };
 
     const renderLink = ({ url, children }) => {
-        const newUrl = new URL(url);
-        if (newUrl.hostname === ALT_BASE_URL) {
-            newUrl.hostname = BASE_URL;
-            url = newUrl.toString();
+        const urlObject = new URL(url);
+        if (BEBRAS_HOSTNAMES.includes(urlObject.hostname)) {
+            return <Link to={urlObject.pathname}>{children}</Link>;
         }
         return <a href={url}>{children}</a>;
     };
