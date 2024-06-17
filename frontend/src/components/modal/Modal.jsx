@@ -19,7 +19,7 @@ const Modal = forwardRef(({ children, customClassNames, openOnMount, ...props },
     const [isOpen, setIsOpen] = useState(false);
 
     const openModal = () => {
-        dialogRef.current.showModal();
+        dialogRef.current.show();
         setIsOpen(true);
         document.body.style.overflow = 'hidden';
     }

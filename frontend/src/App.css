@@ -476,7 +476,8 @@ a {
 }
 
 .vu-img-container {
-    height: 100%
+    height: 50px; 
+    width: 50px;
 }
 
 .vu-img-container>img {
