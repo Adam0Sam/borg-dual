@@ -506,6 +506,11 @@ a {
     padding: var(--content-padding-big);
 }
 
-li {
+/* ik its bad but who really cares */
+* li {
     margin-left: 30px;
+}
+
+.nav__list li {
+    margin-left: 0;
 }
