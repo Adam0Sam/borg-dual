@@ -73,9 +73,11 @@ ol>li {
     list-style-type: none;
     position: relative;
 }
-ol>li{
+
+ol>li {
     display: block;
 }
+
 ol>li:before {
     position: absolute;
     content: counter(item) ".";
@@ -159,7 +161,7 @@ a {
     max-width: 25rem;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1080px) {
     .nav__logo-text {
         font-size: 1rem;
     }
@@ -476,7 +478,7 @@ a {
 }
 
 .vu-img-container {
-    height: 50px; 
+    height: 50px;
     width: 50px;
 }
 
@@ -500,6 +502,10 @@ a {
 
 /* ========== TEMPORARY ========== */
 
-.temp-container{
+.temp-container {
     padding: var(--content-padding-big);
+}
+
+li {
+    margin-left: 30px;
 }

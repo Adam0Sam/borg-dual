@@ -1,25 +1,26 @@
-.tasks{
+.tasks {
     margin-top: 3rem;
     padding: var(--content-padding-big);
 }
 
-.task{
+.task {
     margin-top: 2rem;
 }
 
-.task-content{
+.task-content {
     max-height: 0;
     overflow: hidden;
     transition: all 0.5s ease-in-out;
     border-radius: 1rem;
     background-color: #e5e4e4;
 }
-.task-content.visible{
+
+.task-content.visible {
     padding: 2rem 1rem;
     max-height: min-content;
 }
 
-.task__buttons{
+.task__buttons {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,11 +28,11 @@
     gap: 2rem;
 }
 
-.task__info{
+.task__info {
     text-align: center;
 }
 
-.task-button{
+.task-button {
     height: 8rem;
     padding: 1rem;
     margin: 1rem 0;
@@ -39,15 +40,18 @@
     border-radius: 1rem;
     cursor: pointer;
 }
-.task-button img{
+
+.task-button img {
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
-.task-button:hover{
+
+.task-button:hover {
     background-color: #f4f4f4;
 }
-.task-button.active{
+
+.task-button.active {
     background-color: #f4f4f4;
 }
 
@@ -56,18 +60,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
     gap: 4rem;
     overflow-x: scroll;
 }
 
-.task-cover{
-    max-width: 10rem;
-    max-height: 10rem;
+.task-cover {
+    flex: 1;
 }
 
-.task-cover img{
+.task-cover img {
     width: 100%;
     height: 100%;
-    object-fit:contain;
+    object-fit: contain;
 }
