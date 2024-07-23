@@ -217,7 +217,6 @@ a {
         pointer-events: initial;
     }
 
-    /* Hide Scroll Bar */
     .nav__menu {
         scrollbar-width: none;
     }
@@ -275,6 +274,8 @@ a {
 }
 
 .dropdown__item {
+    flex: 1;
+    flex-basis: 0;
     cursor: pointer;
 }
 
@@ -337,6 +338,11 @@ a {
     .nav {
         display: flex;
         justify-content: space-between;
+        gap: 5rem;
+    }
+
+    .nav__menu {
+        flex: 1;
     }
 
     .nav__toggle {
@@ -345,7 +351,9 @@ a {
 
     .nav__list {
         height: 100%;
+        width: 100%;
         display: flex;
+        justify-content: flex-end;
         column-gap: 3rem;
     }
 
@@ -353,8 +361,10 @@ a {
         pointer-events: initial;
         position: relative;
         min-width: 8rem;
+        max-width: 14rem;
         display: flex;
         justify-content: center;
+        flex: 1;
     }
 
     .nav__link {
@@ -375,9 +385,11 @@ a {
 
     .dropdown__menu {
         max-height: initial;
+        width: 100%;
         overflow: initial;
         position: absolute;
-        left: 0;
+        left: 50%;
+        transform: translateX(-50%);
         top: calc(var(--header-height-desktop) - 1rem);
         opacity: 0;
         transition: opacity .3s, top .3s;
